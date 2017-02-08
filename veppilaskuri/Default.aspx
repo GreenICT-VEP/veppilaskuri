@@ -10,7 +10,7 @@
 <body>
 
     <header>
-
+        <img src="pics/energia_logo.png" alt="Energia Logo"/>
     </header>
     <div id="Esittely">
     
