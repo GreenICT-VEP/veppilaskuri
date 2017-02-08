@@ -27,7 +27,7 @@
 
     </div>
     <footer>
-        &copy; 2017 GreenICT - VEP
+        &copy; 2017 GreenICT - VEP Taina Rytkönen
     </footer>
 </body>
 </html>
