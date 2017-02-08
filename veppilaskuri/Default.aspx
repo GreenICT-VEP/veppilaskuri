@@ -18,7 +18,7 @@
 
     <div id="Lomake">
         <form id="form1" runat="server">
-        
+        <!-- Joni laittaa tänne formin -->
         
         </form>
     </div>
