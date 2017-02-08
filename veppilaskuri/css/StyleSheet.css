@@ -1,0 +1,36 @@
+﻿/*
+    GreenICT - VEP 
+    veppilaskuri StyleSheet.css
+
+*/
+body {
+    background-color: #b7b7b7;
+}
+img {
+
+}
+div {
+    display: block;
+    margin: auto;
+    width: 95%;
+}
+header {
+    margin: auto;
+    width: 50%;
+    background-color: #1c28ea;
+}
+div #Esittely {
+
+}
+
+div #Lomake {
+
+}
+
+div #Ohjeita {
+
+}
+
+footer {
+    background-color: #1c28ea;
+}

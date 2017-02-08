@@ -4,13 +4,30 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>Energialaskuri kotitalouksille</title>
+    <link rel="css/stylesheet" type="text/css" href="StyleSheet.css" />
 </head>
 <body>
-    <form id="form1" runat="server">
-    <div>
+
+    <header>
+
+    </header>
+    <div id="Esittely">
     
     </div>
-    </form>
+
+    <div id="Lomake">
+        <form id="form1" runat="server">
+        
+        
+        </form>
+    </div>
+    <div id="Ohjeita">
+
+
+    </div>
+    <footer>
+        &copy; 2017 GreenICT - VEP
+    </footer>
 </body>
 </html>
