@@ -18,9 +18,15 @@
 
     <div id="Lomake">
         <form id="form1" runat="server">
-        <!-- Joni laittaa tänne formin -->
-        
+            <input type="text" name="test"/>
+            <input type="submit" />
         </form>
+    </div>
+    <div id="test">
+        @if(Request["test"] != null)
+        {
+            @Request["test"]
+        }
     </div>
     <div id="Ohjeita">
 
