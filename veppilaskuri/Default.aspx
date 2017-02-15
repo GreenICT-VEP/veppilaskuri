@@ -53,6 +53,7 @@
             </div>
             <div id="ohje-talokoko" class="col-md-12">
                 <h3>Talon koko</h3>
+                <p>Talon koko annetaan neliömetreinä.</p>
             </div>
             <div id="ohje-kunta" class="col-md-12">
                 <h3>Kunta</h3>
