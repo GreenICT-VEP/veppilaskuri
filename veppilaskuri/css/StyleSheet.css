@@ -20,8 +20,7 @@ div,header,footer {
     margin-top: 20px;
     margin-bottom: 20px;
     width: 95%;
-    min-width: 400px;
-    min-height: 50px;
+    min-height: 300px;
     padding: 2em 2em 2em 2em;
     background-color: #c5caff;
 }
@@ -30,7 +29,7 @@ header {
     background-color: #ffd6d2;
 }
 #Esittely {
-    height: 300px;
+    min-height: 300px;
 }
 
 #Lomake {
@@ -40,9 +39,7 @@ header {
 }
 
 #Ohjeita {
-    margin-right: 10px;
-    width: 35%;
-    float: right;
+    float: left;
     height: 400px;
 }
 #Ohjeita div{
