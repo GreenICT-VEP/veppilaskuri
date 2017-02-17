@@ -23,3 +23,16 @@ footer {
     text-align: center;
     background-color: #c1d7db;
 }
+.result {
+    margin: 5px;
+    padding: 1px;
+    border: solid 2px #000;
+    border-radius: 5px;
+    box-sizing: border-box;
+    text-align: center;
+    box-shadow: rgba(0,0,0,0.5) 3px 3px;
+    background-color: #FFF;
+}
+.average {
+    font-weight: bold;
+}
