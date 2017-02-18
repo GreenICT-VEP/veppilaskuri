@@ -31,11 +31,11 @@
 
     <header>
         <img src="pics/energia_logo.png" alt="Energia Logo"/>
-        <h1>Energialaskuri</h1>
+        <h1>ENERGIALASKURI</h1>
     </header>
-    <div class="container">
+    <div class="container-fluid">
 
-        <div class="row">
+        <div class="row" id="title">
             <div id="Esittely" class="col-md-12">
                 <p>Tervetuloa</p>
             </div>
@@ -48,53 +48,56 @@
                     float average = 0;
                     foreach(ConsumptionData item in consumption_data)
                     {
-                        Response.Write(string.Format("<div class='col-sm-1 result'>{4}<br />{0}<br />{1} C<br />{2:0} - {3:0} kWh</div>\n", item.date.ToShortDateString(), item.temperature, item.consumption_low, item.consumption_up, item.date.DayOfWeek.ToString()));
+                        Response.Write(string.Format("<div class='col-sm-2'><div class='result'>{4}<br />{0}<br />{1} C<br />{2:0} - {3:0} kWh</div></div>\n", item.date.ToShortDateString(), item.temperature, item.consumption_low, item.consumption_up, item.date.DayOfWeek.ToString()));
                         average = average + ((item.consumption_low + item.consumption_up) / 2);
                     }
-                    Response.Write(string.Format("</div><div class='row'>\n<div class='col-sm-2 result average'>{0} päivän<br />keskiarvo: {1:0} kWh</div>\n", consumption_data.Count(), (average / consumption_data.Count())));
+                    Response.Write(string.Format("<div class='col-sm-12'><div class='result average'>{0} päivän<br />keskiarvo: {1:0} kWh</div></div>\n", consumption_data.Count(), (average / consumption_data.Count())));
                 }
             %>
         </div>
-        <div class="row">
-            <div id="Lomake" class="col-md-6">
-                <form id="form1" method="post" runat="server">
-                    <div class="form-group">
-                        <label for="size">Talon koko</label>
-                        <input name="size" id="size" type="number" step="0.1" class="form-control" required />
-                        <label for="eclass">Energialuokka</label>
-                        <select name="eclass" id="eclass" class="form-control">
-                            <option>A</option>
-                            <option>B</option>
-                            <option>C</option>
-                            <option>D</option>
-                            <option>E</option>
-                            <option>F</option>
-                            <option>G</option>
-                        </select>
-                        <label for="temperature">Sisälämpötila</label>
-                        <input name="temperature" id="temperature" type="number" value="20" step="0.1" class="form-control" required/><br />
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
-                            <input name="town" id="town" placeholder="Kunta" class="form-control" required/>
-                        </div><br />
-                        <input id="submit" type="submit" value="Laske" class="btn btn-primary" disabled />
-                    </div>
-                </form>
+        <div class="row" id="main">
+            <div class="col-sm-6">
+                <div id="Lomake" class="col-sm-12">
+                    <form id="form1" method="post" runat="server">
+                        <div class="form-group">
+                            <label for="size">Talon koko</label>
+                            <input name="size" id="size" type="number" step="0.1" class="form-control" required />
+                            <label for="eclass">Energialuokka</label>
+                            <select name="eclass" id="eclass" class="form-control">
+                                <option>A</option>
+                                <option>B</option>
+                                <option>C</option>
+                                <option>D</option>
+                                <option>E</option>
+                                <option>F</option>
+                                <option>G</option>
+                            </select>
+                            <label for="temperature">Sisälämpötila</label>
+                            <input name="temperature" id="temperature" type="number" value="20" step="0.1" class="form-control" required/><br />
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                                <input name="town" id="town" placeholder="Kunta" class="form-control" required/>
+                            </div><br />
+                            <input id="submit" type="submit" value="Laske" class="btn btn-primary" disabled />
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div id="Ohjeita" class="col-md-6">
-        
-                <div id="ohje-perus" class="col-md-12">
-                    <h3>Lomakkeen täyttö</h3>
-                </div>
-                <div id="ohje-talokoko" class="col-md-12">
-                    <h3>Talon koko</h3>
-                    <p>Talon koko annetaan neliömetreinä.</p>
-                </div>
-                <div id="ohje-kunta" class="col-md-12">
-                    <h3>Kunta</h3>
-                </div>
-                <div id="ohje-energialuokka" class="col-md-12">
-                    <h3>Energialuokka</h3>
+            <div class="col-sm-6">
+                <div id="Ohjeita" class="col-sm-12">
+                    <div id="ohje-perus" class="col-md-12">
+                        <h3>Lomakkeen täyttö</h3>
+                    </div>
+                    <div id="ohje-talokoko" class="col-md-12">
+                        <h3>Talon koko</h3>
+                        <p>Talon koko annetaan neliömetreinä.</p>
+                    </div>
+                    <div id="ohje-kunta" class="col-md-12">
+                        <h3>Kunta</h3>
+                    </div>
+                    <div id="ohje-energialuokka" class="col-md-12">
+                        <h3>Energialuokka</h3>
+                    </div>
                 </div>
             </div>
         </div>

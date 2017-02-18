@@ -16,7 +16,7 @@ public partial class _Default : System.Web.UI.Page
     {
         if (HttpContext.Current.Request.HttpMethod == "POST")
         {
-            int days = 7;
+            int days = 12;
             dynamic temp_data = get_weather_data(Request["town"], days);
             consumption_data = new ConsumptionData[days];
             float eclass_lower = 0;
@@ -54,16 +54,16 @@ public partial class _Default : System.Web.UI.Page
                     eclass_upper = 370;
                     break;
             }
-            float eclass_lower_daily = eclass_lower / 365;
-            float eclass_upper_daily = eclass_upper / 365;
+            float eclass_lower_multiplier = (eclass_lower / 365) * size / 16.7f;
+            float eclass_upper_multiplier = (eclass_upper / 365) * size / 16.7f;
             int days_count = 0;
             foreach (dynamic day in temp_data.list)
             {
                 ConsumptionData data = new ConsumptionData();
-                data.date = DateTime.Now.AddDays(days_count).Date;
+                data.date = DateTime.Now.AddDays(days_count);
                 data.temperature = (float)day.temp.day;
-                data.consumption_low = (temp_in - (float)day.temp.day) * (eclass_lower_daily * size / 16.7f);
-                data.consumption_up = (temp_in - (float)day.temp.day) * (eclass_upper_daily * size / 16.7f);
+                data.consumption_low = (temp_in - (float)day.temp.day) * eclass_lower_multiplier;
+                data.consumption_up = (temp_in - (float)day.temp.day) * eclass_upper_multiplier;
                 consumption_data[days_count] = data;
                 days_count++;
             }
