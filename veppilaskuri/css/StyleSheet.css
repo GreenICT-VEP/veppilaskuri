@@ -3,34 +3,80 @@
     veppilaskuri StyleSheet.css
 
 */
+html {
+    height: 100%;
+}
 body {
-    background-color: #b7b7b7;
+    background-color: #000;
+    font-family: Helvetica, Arial, sans-serif;
+    color: #121212;
+    min-height: 100%;
 }
 img {
 
 }
-div {
-    display: block;
-    margin: auto;
-    width: 95%;
-}
 header {
-    margin: auto;
-    width: 50%;
-    background-color: #1c28ea;
+    height: 150px;
 }
-div #Esittely {
-
+h1 {
+    display: inline;
+    font-size: 50px;
+    font-weight: bold;
 }
-
-div #Lomake {
-
-}
-
-div #Ohjeita {
-
-}
-
 footer {
-    background-color: #1c28ea;
+    clear: both;
+    text-align: center;
 }
+#title {
+    text-align: center;
+}
+.result, #Lomake, #Ohjeita{
+    padding: 10px;
+    border: solid 2px #000;
+    border-radius: 5px;
+    box-sizing: border-box;
+    text-align: center;
+    box-shadow: rgba(0,0,0,0.5) 3px 3px;
+    background-color: #FFF;
+    margin-bottom: 10px;
+}
+.result {
+    border-radius: 40px;
+    border: solid 2px #FFF;
+}
+.average {
+    font-weight: bold;
+}
+.row{
+    padding: 5px !important;
+}
+
+/* COLORS */
+header {
+    background-color: darkblue;
+    background: linear-gradient(darkblue, deepskyblue);
+    color: #FFF;
+}
+#title {
+    background-color: deepskyblue;
+    background: linear-gradient(deepskyblue, lightskyblue);
+    color: #FFF;
+}
+#results {
+    background-color: lightskyblue;
+    min-height: 100%;
+}
+#main {
+    background-color: forestgreen;
+}
+#Lomake {
+    background-color: antiquewhite;
+}
+#Ohjeita {
+    background-color: antiquewhite;
+}
+footer {
+    background-color: #000;
+    color: #FFF;
+}
+/* /COLORS */
