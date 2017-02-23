@@ -65,9 +65,9 @@ public partial class _Default : System.Web.UI.Page
                 ConsumptionData data = new ConsumptionData();
                 data.date = DateTime.Now.AddDays(days_count);
                 data.temperature = (float)day.temp.day;
-                if(data.temperature > max_temperature)
+                if(Math.Abs(data.temperature) > max_temperature)
                 {
-                    max_temperature = data.temperature;
+                    max_temperature = Math.Abs(data.temperature);
                 }
                 data.consumption_low = (temp_in - day_average) * eclass_lower_multiplier;
                 data.consumption_up = (temp_in - day_average) * eclass_upper_multiplier;

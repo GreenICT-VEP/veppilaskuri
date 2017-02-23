@@ -51,9 +51,9 @@
                         average += item.consumption_avg;
                     }
                     /* HEADER */
-                    Response.Write(string.Format("<div class='col-sm-12'><div class='result average'>{0} päivän<br />keskiarvo: {1:0} kWh<button id='show_details' style='float:right'>+</button></div></div>\n", consumption_data.Count(), (average / consumption_data.Count())));
+                    Response.Write(string.Format("<div class='col-sm-12'><div class='result average'>{0} päivän<br />keskiarvo: {1:0} kWh\n", consumption_data.Count(), (average / consumption_data.Count())));
                     /* GRAPH */
-                    Response.Write("<div class='col-sm-12'><canvas id='result_graph'>Seilaimessasi ei ole Canvas tukea</canvas></div>");
+                    Response.Write("<canvas id='result_graph'>Seilaimessasi ei ole Canvas tukea</canvas>\n<button id='show_details'>+</button>\n</div>\n</div>\n");
                     /* DETAILS */
                     Response.Write("<div id='details' class='col-sm-12' style='display:none'>");
                     foreach(ConsumptionData item in consumption_data)
@@ -136,8 +136,8 @@
         if (consumption_data != null)
         {
             Response.Write(string.Format("var consumption_data = {0};\n", ConvertToJSON(consumption_data)));
-            Response.Write(string.Format("var max_temperature = {0};\n", max_temperature).Replace(',','.'));
-            Response.Write(string.Format("var max_consumption = {0};\n", max_consumption_avg).Replace(',','.'));
+            Response.Write(string.Format("var highest_temperature = {0};\n", max_temperature).Replace(',','.'));
+            Response.Write(string.Format("var highest_consumption = {0};\n", max_consumption_avg).Replace(',','.'));
         }
         %>
         var graph = document.getElementById("result_graph");
@@ -147,63 +147,80 @@
             graph.height = $("#result_graph").height();
             graph.width = $("#result_graph").width();
             var context = graph.getContext("2d");
-            /* Legend */
+            /* Graph settings */
             var legend_padding = 50;
+            var text_size = 16;
+            var line_count = 4;
+            var temperature_line_count = 4;
+            var dot_size = 5;
+            var consumption_step = 50;
+            var temperature_step = 10;
+            /* Colors */
+            var temperature_color = "#FF0000";
+            var temperature_text_color = "#000000";
+            var bar_color = "#0000FF";
+            var bar_text_color = "#000000";
+            var line_color = "#BCBCBC";
+            var date_color = "#000000";
+            /* Scaling */
+            var graph_area_width = graph.width - legend_padding * 2;
+            var graph_area_height = graph.height - legend_padding * 2;
+            var bar_max = (Math.floor(highest_consumption / consumption_step) + 1) * consumption_step;
+            var bar_scale = graph_area_height / bar_max;
+            var temperature_max = (Math.floor(highest_temperature / temperature_step) + 1) * temperature_step;
+            var temperature_scale = graph_area_height / temperature_max / 2;
+            /* Legend */
             var legend_center = legend_padding / 2;
-            context.font = "16px Arial";
+            context.font = text_size + "px Arial";
             context.textAlign = "center";
             /* Consumption legend */
-            context.fillStyle = "#0033CC";
+            context.fillStyle = bar_text_color;
             context.fillText("kWh", legend_center, legend_center);
-            context.fillText("300", legend_center, legend_padding);
-            context.fillText("150", legend_center, graph.height / 2);
-            context.fillText("0", legend_center, graph.height - legend_padding);
-            /* Temperature legend */
-            context.fillStyle = "#FF0000";
-            context.fillText("C", graph.width - legend_center , legend_center);
-            context.fillText("+15", graph.width - legend_center, legend_padding);
-            context.fillText("0", graph.width - legend_center, graph.height / 2);
-            context.fillText("-15", graph.width - legend_center, graph.height - legend_padding);
-            /* Lines */
+            var line_gap = graph_area_height / line_count;
             context.lineWidth = 1;
-            context.strokeStyle = "#000000";
+            context.strokeStyle = line_color;
             context.beginPath();
-            context.moveTo(legend_padding, legend_padding)
-            context.lineTo(graph.width - legend_padding, legend_padding);
-            context.stroke();
-            context.moveTo(legend_padding, graph.height / 2)
-            context.lineTo(graph.width - legend_padding, graph.height / 2);
-            context.stroke();
-            context.moveTo(legend_padding, graph.height - legend_padding)
-            context.lineTo(graph.width - legend_padding, graph.height - legend_padding);
-            context.stroke();
+            for (i = 0; i <= line_count; i++) {
+                context.fillText(bar_max - i * (bar_max / line_count), legend_center, legend_padding + i * line_gap + (text_size / 4));
+                context.moveTo(legend_padding, legend_padding + i * line_gap);
+                context.lineTo(graph.width - legend_padding, legend_padding + i * line_gap);
+                context.stroke();
+            }
+            /* Temperature legend */
+            context.fillStyle = temperature_text_color;
+            context.fillText("C", graph.width - legend_center, legend_center);
+            var temperature_line_gap = graph_area_height / temperature_line_count;
+            for (i = 0; i <= temperature_line_count; i++)
+            {
+                context.fillText(temperature_max - i * temperature_max / (temperature_line_count / 2), graph.width - legend_center, legend_padding + i * temperature_line_gap + (text_size / 4));
+            }
             /* Draw Shared variables */
             var items_count = consumption_data.length;
-            var bar_count = (graph.width - legend_padding * 2) / items_count;
+            var bar_count = graph_area_width / items_count;
             var bar_width = bar_count / 2;
             var bar_center = bar_count / 4 + bar_width / 2;
             /* consumption bar variables */
             var y_consumption = graph.height - legend_padding;
-            context.fillStyle = "#0033CC";
+            context.fillStyle = bar_color;
             /* Draw consumption bars */
             for (i = 0; i < items_count; i++)
             {
                 // Bar
-                context.fillRect(bar_width / 2 + legend_padding + bar_count * i, y_consumption, bar_width, -consumption_data[i].consumption_avg);
-                // Dates
+                context.fillStyle = bar_color;
+                context.fillRect(bar_width / 2 + legend_padding + bar_count * i, y_consumption, bar_width, -consumption_data[i].consumption_avg * bar_scale);
+                // Date
                 var date = new Date(parseInt(consumption_data[i].date.replace("\/Date(", "").replace(")\/", "")));
-                context.fillText(date.getDate() + "." + date.getMonth(), legend_padding + bar_count * i + bar_center, y_consumption + legend_center);
+                context.fillStyle = date_color;
+                context.fillText(date.toLocaleDateString(), legend_padding + bar_count * i + bar_center, y_consumption + legend_center);
             }
             /* Temeperature line variables */
-            var x_begin = legend_padding;
+            var x_begin = legend_padding + bar_center;
             var y_begin = graph.height / 2;
-            var dot_size = 3;
-            var temperature_scale = max_temperature; // TO BE DONE
-            context.strokeStyle = "#FF0000";
-            context.lineWidth = 2;
+            context.strokeStyle = temperature_color;
+            context.lineWidth = 3;
             /* Draw Temperature line */
             context.beginPath();
-            context.moveTo(x_begin, y_begin);
+            context.moveTo(x_begin, y_begin - consumption_data[0].temperature * temperature_scale);
             for (i = 0; i < items_count; i++)
             {
                 var x_temperature = legend_padding + bar_count * i + bar_center;
