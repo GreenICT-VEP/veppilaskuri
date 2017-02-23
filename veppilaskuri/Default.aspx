@@ -82,7 +82,9 @@
                                 <option>G</option>
                             </select>
                             <label for="temperature">Sisälämpötila</label>
-                            <input name="temperature" id="temperature" type="number" value="20" step="0.1" class="form-control" required/><br />
+                            <input name="temperature" id="temperature" type="number" value="20" step="0.1" class="form-control" required/>
+                            <label for="days">Päivien lukumäärä</label>
+                            <input name="days" id="days" type="number" value="7" min="1" max="16" class="form-control" required /><br />
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
                                 <input name="town" id="town" placeholder="Kunta" class="form-control" required/>
@@ -152,9 +154,11 @@
             var text_size = 16;
             var line_count = 4;
             var temperature_line_count = 4;
-            var dot_size = 5;
+            var temperature_line_size = 3;
+            var dot_size = 4;
             var consumption_step = 50;
             var temperature_step = 10;
+            var decimal_count = 0;
             /* Colors */
             var temperature_color = "#FF0000";
             var temperature_text_color = "#000000";
@@ -181,7 +185,7 @@
             context.strokeStyle = line_color;
             context.beginPath();
             for (i = 0; i <= line_count; i++) {
-                context.fillText(bar_max - i * (bar_max / line_count), legend_center, legend_padding + i * line_gap + (text_size / 4));
+                context.fillText((bar_max - i * (bar_max / line_count)).toFixed(decimal_count), legend_center, legend_padding + i * line_gap + (text_size / 4));
                 context.moveTo(legend_padding, legend_padding + i * line_gap);
                 context.lineTo(graph.width - legend_padding, legend_padding + i * line_gap);
                 context.stroke();
@@ -192,7 +196,7 @@
             var temperature_line_gap = graph_area_height / temperature_line_count;
             for (i = 0; i <= temperature_line_count; i++)
             {
-                context.fillText(temperature_max - i * temperature_max / (temperature_line_count / 2), graph.width - legend_center, legend_padding + i * temperature_line_gap + (text_size / 4));
+                context.fillText((temperature_max - i * temperature_max / (temperature_line_count / 2)).toFixed(decimal_count), graph.width - legend_center, legend_padding + i * temperature_line_gap + (text_size / 4));
             }
             /* Draw Shared variables */
             var items_count = consumption_data.length;
@@ -211,13 +215,13 @@
                 // Date
                 var date = new Date(parseInt(consumption_data[i].date.replace("\/Date(", "").replace(")\/", "")));
                 context.fillStyle = date_color;
-                context.fillText(date.toLocaleDateString(), legend_padding + bar_count * i + bar_center, y_consumption + legend_center);
+                context.fillText(date.getDate() + "." + (date.getMonth() + 1), legend_padding + bar_count * i + bar_center, y_consumption + legend_center);
             }
             /* Temeperature line variables */
             var x_begin = legend_padding + bar_center;
             var y_begin = graph.height / 2;
             context.strokeStyle = temperature_color;
-            context.lineWidth = 3;
+            context.lineWidth = temperature_line_size;
             /* Draw Temperature line */
             context.beginPath();
             context.moveTo(x_begin, y_begin - consumption_data[0].temperature * temperature_scale);

@@ -18,8 +18,9 @@ public partial class _Default : System.Web.UI.Page
     {
         if (HttpContext.Current.Request.HttpMethod == "POST")
         {
-            int days = 14;
-            dynamic temp_data = get_weather_data(Request["town"], days);
+            int days = 7;
+            int.TryParse(Request["days"], out days);
+            dynamic weather_data = get_weather_data(Request["town"], days);
             consumption_data = new ConsumptionData[days];
             float eclass_lower = 0;
             float eclass_upper = 150;
@@ -59,7 +60,7 @@ public partial class _Default : System.Web.UI.Page
             float eclass_lower_multiplier = (eclass_lower / 365) * size / 16.7f;
             float eclass_upper_multiplier = (eclass_upper / 365) * size / 16.7f;
             int days_count = 0;
-            foreach (dynamic day in temp_data.list)
+            foreach (dynamic day in weather_data.list)
             {
                 float day_average = (float)day.temp.day;
                 ConsumptionData data = new ConsumptionData();
