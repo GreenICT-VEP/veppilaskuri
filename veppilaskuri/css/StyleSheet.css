@@ -50,6 +50,14 @@ footer {
 .row{
     padding: 5px !important;
 }
+#result_graph{
+    width: 90%; 
+    height: 400px; 
+    margin: auto;
+    display: block;
+    border: 2px solid #000;
+    border-radius: 5px;
+}
 
 /* COLORS */
 header {
@@ -65,6 +73,9 @@ header {
 #results {
     background-color: lightskyblue;
     min-height: 100%;
+}
+#result_graph{
+    background-color: #FFF;
 }
 #main {
     background-color: forestgreen;

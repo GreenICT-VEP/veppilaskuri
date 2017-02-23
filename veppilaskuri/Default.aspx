@@ -48,10 +48,19 @@
                     float average = 0;
                     foreach(ConsumptionData item in consumption_data)
                     {
-                        Response.Write(string.Format("<div class='col-sm-2'><div class='result'>{4}<br />{0}<br />{1} C<br />{2:0} - {3:0} kWh</div></div>\n", item.date.ToShortDateString(), item.temperature, item.consumption_low, item.consumption_up, item.date.DayOfWeek.ToString()));
-                        average = average + ((item.consumption_low + item.consumption_up) / 2);
+                        average += item.consumption_avg;
                     }
-                    Response.Write(string.Format("<div class='col-sm-12'><div class='result average'>{0} päivän<br />keskiarvo: {1:0} kWh</div></div>\n", consumption_data.Count(), (average / consumption_data.Count())));
+                    /* HEADER */
+                    Response.Write(string.Format("<div class='col-sm-12'><div class='result average'>{0} päivän<br />keskiarvo: {1:0} kWh<button id='show_details' style='float:right'>+</button></div></div>\n", consumption_data.Count(), (average / consumption_data.Count())));
+                    /* GRAPH */
+                    Response.Write("<div class='col-sm-12'><canvas id='result_graph'>Seilaimessasi ei ole Canvas tukea</canvas></div>");
+                    /* DETAILS */
+                    Response.Write("<div id='details' class='col-sm-12' style='display:none'>");
+                    foreach(ConsumptionData item in consumption_data)
+                    {
+                        Response.Write(string.Format("<div class='col-sm-2'><div class='result'>{0}<br />{1} C<br />{2:0} kWh</div></div>\n", item.date.ToShortDateString(), item.temperature, item.consumption_avg));
+                    }
+                    Response.Write("</div>");
                 }
             %>
         </div>
@@ -120,6 +129,91 @@
                 $("#submit").prop("disabled", false);
             }
         });
+        $("#show_details").click(function () {
+            $("#details").toggle();
+        });
+        <%
+        if (consumption_data != null)
+        {
+            Response.Write(string.Format("var consumption_data = {0};\n", ConvertToJSON(consumption_data)));
+            Response.Write(string.Format("var max_temperature = {0};\n", max_temperature).Replace(',','.'));
+            Response.Write(string.Format("var max_consumption = {0};\n", max_consumption_avg).Replace(',','.'));
+        }
+        %>
+        var graph = document.getElementById("result_graph");
+        if(graph)
+        {
+            /* Canvas settings */
+            graph.height = $("#result_graph").height();
+            graph.width = $("#result_graph").width();
+            var context = graph.getContext("2d");
+            /* Legend */
+            var legend_padding = 50;
+            var legend_center = legend_padding / 2;
+            context.font = "16px Arial";
+            context.textAlign = "center";
+            /* Consumption legend */
+            context.fillStyle = "#0033CC";
+            context.fillText("kWh", legend_center, legend_center);
+            context.fillText("300", legend_center, legend_padding);
+            context.fillText("150", legend_center, graph.height / 2);
+            context.fillText("0", legend_center, graph.height - legend_padding);
+            /* Temperature legend */
+            context.fillStyle = "#FF0000";
+            context.fillText("C", graph.width - legend_center , legend_center);
+            context.fillText("+15", graph.width - legend_center, legend_padding);
+            context.fillText("0", graph.width - legend_center, graph.height / 2);
+            context.fillText("-15", graph.width - legend_center, graph.height - legend_padding);
+            /* Lines */
+            context.lineWidth = 1;
+            context.strokeStyle = "#000000";
+            context.beginPath();
+            context.moveTo(legend_padding, legend_padding)
+            context.lineTo(graph.width - legend_padding, legend_padding);
+            context.stroke();
+            context.moveTo(legend_padding, graph.height / 2)
+            context.lineTo(graph.width - legend_padding, graph.height / 2);
+            context.stroke();
+            context.moveTo(legend_padding, graph.height - legend_padding)
+            context.lineTo(graph.width - legend_padding, graph.height - legend_padding);
+            context.stroke();
+            /* Draw Shared variables */
+            var items_count = consumption_data.length;
+            var bar_count = (graph.width - legend_padding * 2) / items_count;
+            var bar_width = bar_count / 2;
+            var bar_center = bar_count / 4 + bar_width / 2;
+            /* consumption bar variables */
+            var y_consumption = graph.height - legend_padding;
+            context.fillStyle = "#0033CC";
+            /* Draw consumption bars */
+            for (i = 0; i < items_count; i++)
+            {
+                // Bar
+                context.fillRect(bar_width / 2 + legend_padding + bar_count * i, y_consumption, bar_width, -consumption_data[i].consumption_avg);
+                // Dates
+                var date = new Date(parseInt(consumption_data[i].date.replace("\/Date(", "").replace(")\/", "")));
+                context.fillText(date.getDate() + "." + date.getMonth(), legend_padding + bar_count * i + bar_center, y_consumption + legend_center);
+            }
+            /* Temeperature line variables */
+            var x_begin = legend_padding;
+            var y_begin = graph.height / 2;
+            var dot_size = 3;
+            var temperature_scale = max_temperature; // TO BE DONE
+            context.strokeStyle = "#FF0000";
+            context.lineWidth = 2;
+            /* Draw Temperature line */
+            context.beginPath();
+            context.moveTo(x_begin, y_begin);
+            for (i = 0; i < items_count; i++)
+            {
+                var x_temperature = legend_padding + bar_count * i + bar_center;
+                var y_temperature = y_begin - consumption_data[i].temperature * temperature_scale;
+                context.lineTo(x_temperature, y_temperature);
+                context.arc(x_temperature, y_temperature, dot_size, 0, 2 * Math.PI);
+            }
+            context.lineTo(graph.width - legend_padding - bar_width, y_temperature);
+            context.stroke();
+        }
     </script>
 </body>
 </html>

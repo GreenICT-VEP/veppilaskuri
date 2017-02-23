@@ -12,11 +12,13 @@ using System.IO;
 public partial class _Default : System.Web.UI.Page
 {
     public ConsumptionData[] consumption_data;
+    public float max_temperature = 0;
+    public float max_consumption_avg = 0;
     protected void Page_Load(object sender, EventArgs e)
     {
         if (HttpContext.Current.Request.HttpMethod == "POST")
         {
-            int days = 12;
+            int days = 14;
             dynamic temp_data = get_weather_data(Request["town"], days);
             consumption_data = new ConsumptionData[days];
             float eclass_lower = 0;
@@ -59,16 +61,27 @@ public partial class _Default : System.Web.UI.Page
             int days_count = 0;
             foreach (dynamic day in temp_data.list)
             {
+                float day_average = (float)day.temp.day;
                 ConsumptionData data = new ConsumptionData();
                 data.date = DateTime.Now.AddDays(days_count);
                 data.temperature = (float)day.temp.day;
-                data.consumption_low = (temp_in - (float)day.temp.day) * eclass_lower_multiplier;
-                data.consumption_up = (temp_in - (float)day.temp.day) * eclass_upper_multiplier;
+                if(data.temperature > max_temperature)
+                {
+                    max_temperature = data.temperature;
+                }
+                data.consumption_low = (temp_in - day_average) * eclass_lower_multiplier;
+                data.consumption_up = (temp_in - day_average) * eclass_upper_multiplier;
+                data.consumption_avg = (data.consumption_low + data.consumption_up) / 2;
+                if (data.consumption_avg > max_consumption_avg)
+                {
+                    max_consumption_avg = data.consumption_avg;
+                }
                 consumption_data[days_count] = data;
                 days_count++;
             }
         }
     }
+
     public dynamic get_weather_data(string town, int days)
     {
         town = town.ToLower().Replace('ä', 'a').Replace('ö', 'o');
@@ -84,6 +97,11 @@ public partial class _Default : System.Web.UI.Page
         }
         return result = Json.Decode(json);
     }
+
+    public string ConvertToJSON(ConsumptionData[] obj)
+    {
+        return new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(obj);
+    }
 }
 
 public class ConsumptionData
@@ -92,4 +110,5 @@ public class ConsumptionData
     public float temperature;
     public float consumption_low;
     public float consumption_up;
+    public float consumption_avg;
 }
