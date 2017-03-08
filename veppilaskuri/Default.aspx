@@ -36,8 +36,12 @@
     <div class="container-fluid">
 
         <div class="row" id="title">
-            <div id="Esittely" class="col-md-12">
-                <p>Tervetuloa</p>
+            <div id="Esittely" class="col-md-4">
+                
+                <p>Energialaskuri osa Lahden ammattikorkeakoulun GreenICT-projektia. Sivuston tarkoituksena on osoittaa opiskelijoiden kyky hakea tietoa käyttäjän antamista ja ulkoisista lähteistä.</p>
+            </div>
+            <div id="#Esittely-kuva" class="col-md-8">
+                <img src="pics/taustallinen2.png" alt="Esittelykuva" style="max-width: 600px;"/>
             </div>
 
         </div>
