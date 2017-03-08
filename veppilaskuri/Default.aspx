@@ -26,6 +26,7 @@
     
     <!-- Omat stylesheetit ja javascriptit -->
     <link rel="stylesheet" type="text/css" href="css/StyleSheet.css" />
+    <script src="js/javascriptit.js"></script>
 </head>
 <body>
 
@@ -104,19 +105,19 @@
             </div>
             <div class="col-sm-6">
                 <div id="Ohjeita" class="col-sm-12">
-                    <div id="ohje-perus" class="col-md-12">
+                    <div id="ohje-perus" class="ohje col-md-12">
                         <h3>Lomakkeen täyttö</h3>
                         <p>Syötä pelkkiä numeroita ja valitse alasvetolaatikoista oikea vaihtoehto.</p>
                     </div>
-                    <div id="ohje-talokoko" class="col-md-12">
+                    <div id="ohje-talokoko" class="ohje col-md-12">
                         <h3>Talon koko</h3>
                         <p>Talon koko annetaan neliömetreinä.</p>
                     </div>
-                    <div id="ohje-kunta" class="col-md-12">
+                    <div id="ohje-kunta" class="ohje col-md-12">
                         <h3>Kunta</h3>
                         <p>Kirjoita kunnan nimestä muutama ensimmäinen kirjain ja valitse kunta valikosta</p>
                     </div>
-                    <div id="ohje-energialuokka" class="col-md-12">
+                    <div id="ohje-energialuokka" class="ohje col-md-12">
                         <h3>Energialuokka</h3>
                         <p>Talojen energialuokat on listattu wikipediassa.</p>
                     </div>
