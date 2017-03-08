@@ -36,12 +36,16 @@
     <div class="container-fluid">
 
         <div class="row" id="title">
-            <div id="Esittely" class="col-md-4">
-                
-                <p>Energialaskuri osa Lahden ammattikorkeakoulun GreenICT-projektia. Sivuston tarkoituksena on osoittaa opiskelijoiden kyky hakea tietoa käyttäjän antamista ja ulkoisista lähteistä.</p>
+            <div id="Esittely" class="col-md-8">
+                <p>
+                    Energialaskuri osa Lahden ammattikorkeakoulun GreenICT-projektia. 
+                    Sivuston tarkoituksena on osoittaa opiskelijoiden kyky hakea tietoa käyttäjän antamista ja ulkoisista lähteistä.
+                    Projektin tarkoituksena on luoda käyttäjäystävällinen ja intuitiivinen käyttöliittymä tiedon syöttämiseen ja tulostamiseen. 
+
+                </p>
             </div>
-            <div id="#Esittely-kuva" class="col-md-8">
-                <img src="pics/taustallinen2.png" alt="Esittelykuva" style="max-width: 600px;"/>
+            <div id="#Esittely-kuva" class="col-md-4">
+                <img src="pics/taustallinen2.png" alt="Esittelykuva" style="max-height: 200px;"/>
             </div>
 
         </div>
@@ -102,6 +106,7 @@
                 <div id="Ohjeita" class="col-sm-12">
                     <div id="ohje-perus" class="col-md-12">
                         <h3>Lomakkeen täyttö</h3>
+                        <p>Syötä pelkkiä numeroita ja valitse alasvetolaatikoista oikea vaihtoehto.</p>
                     </div>
                     <div id="ohje-talokoko" class="col-md-12">
                         <h3>Talon koko</h3>
@@ -109,9 +114,11 @@
                     </div>
                     <div id="ohje-kunta" class="col-md-12">
                         <h3>Kunta</h3>
+                        <p>Kirjoita kunnan nimestä muutama ensimmäinen kirjain ja valitse kunta valikosta</p>
                     </div>
                     <div id="ohje-energialuokka" class="col-md-12">
                         <h3>Energialuokka</h3>
+                        <p>Talojen energialuokat on listattu wikipediassa.</p>
                     </div>
                 </div>
             </div>

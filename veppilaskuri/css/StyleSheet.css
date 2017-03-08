@@ -18,6 +18,10 @@ img {
 header {
     height: 150px;
 }
+p {
+    font-size: 20px;
+    text-align: justify;
+}
 h1 {
     display: inline;
     font-size: 50px;
