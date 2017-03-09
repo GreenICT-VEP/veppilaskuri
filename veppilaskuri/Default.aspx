@@ -51,6 +51,7 @@
 
         </div>
         <div class="row" id="results">
+            <div class="col-sm-12">
             <%
                 if(consumption_data != null)
                 {
@@ -73,6 +74,7 @@
                     Response.Write("</ul></div>\n");
                 }
             %>
+            </div>
         </div>
         <div class="row" id="main">
             <div class="col-sm-6">
@@ -262,7 +264,7 @@
                 context.fillStyle = date_color;
                 context.fillText(date.getDate() + "." + (date.getMonth() + 1), legend_padding + bar_count * i + bar_center, y_consumption + legend_center);
             }
-            /* Temeperature line variables */
+            /* Temperature line variables */
             var x_begin = legend_padding + bar_center;
             var y_begin = graph.height / 2;
             context.strokeStyle = temperature_color;
@@ -281,8 +283,13 @@
             context.stroke();
             $("#result_graph").mousemove(function(event){
                 var rect = graph.getBoundingClientRect();
-                var x = Math.floor((event.clientX - rect.left) / (rect.right - rect.left) * graph.width);
-                $("#day_details").html("X = " + x);
+                var x = (event.clientX - rect.left) / (rect.right - rect.left) * graph.width;
+                if (x > legend_padding && x < (graph.width - legend_padding))
+                {
+                    var id = Math.floor((x - legend_padding) / (graph.width - legend_padding * 2) * items_count);
+                    var date = new Date(parseInt(consumption_data[id].date.replace("\/Date(", "").replace(")\/", "")));
+                    $("#day_details").html(date.toDateString() + "<br />Lämpötila: " + consumption_data[id].temperature.toFixed(decimal_count) + " &#8451;<br />Kulutus: " + consumption_data[id].consumption_avg.toFixed(decimal_count) + " Kwh");
+                }
             });
         }
     </script>
