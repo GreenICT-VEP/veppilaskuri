@@ -1,39 +1,54 @@
 ﻿$(document).ready(function () {
     $("#ohje-perus").fadeIn();
 
-    $("#size").on('focus hover',
-      function (e) {
-          $(".ohje").hide();
-          $("#ohje-talokoko").fadeIn();
-      }
-    );
+    $("#size")
+        .hover(function () {
+            $(".ohje").hide();
+            $("#ohje-talokoko").fadeIn();
+        })
+        .focus(function () {
+            $(".ohje").hide();
+            $("#ohje-talokoko").fadeIn();
+        });
 
-    $("#eclass").on('focus hover',
-      function (e) {
-          $(".ohje").hide();
-          $("#ohje-energialuokka").fadeIn();
-      }
-    );
+    $("#eclass")
+        .hover(function () {
+            $(".ohje").hide();
+            $("#ohje-energialuokka").fadeIn();
+        })
+        .focus(function () {
+            $(".ohje").hide();
+            $("#ohje-energialuokka").fadeIn();
+        });
 
-    $("#temperature").on('focus hover',
-      function (e) {
-          $(".ohje").hide();
-          $("#ohje-lampotila").fadeIn();
-      }
-    );
+    $("#temperature")
+        .hover(function () {
+            $(".ohje").hide();
+            $("#ohje-lampotila").fadeIn();
+        })
+        .focus(function () {
+            $(".ohje").hide();
+            $("#ohje-lampotila").fadeIn();
+        });
 
-    $("#days").on('focus hover',
-      function (e) {
-          $(".ohje").hide();
-          $("#ohje-paivat").fadeIn();
-      }
-    );
+    $("#days")
+        .hover(function () {
+            $(".ohje").hide();
+            $("#ohje-paivat").fadeIn();
+        })
+        .focus(function () {
+            $(".ohje").hide();
+            $("#ohje-paivat").fadeIn();
+        });
 
-    $("#town").on('focus hover',
-      function (e) {
-          $(".ohje").hide();
-          $("#ohje-kunta").fadeIn();
-      }
-    );
+    $("#town")
+        .hover(function () {
+            $(".ohje").hide();
+            $("#ohje-kunta").fadeIn();
+        })
+        .focus(function () {
+            $(".ohje").hide();
+            $("#ohje-kunta").fadeIn();
+        });
 });
 
