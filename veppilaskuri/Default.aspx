@@ -60,16 +60,17 @@
                         average += item.consumption_avg;
                     }
                     /* HEADER */
-                    Response.Write(string.Format("<div class='col-sm-12'><div class='result average'>{0} päivän<br />keskiarvo: {1:0} kWh\n", consumption_data.Count(), (average / consumption_data.Count())));
+                    Response.Write(string.Format("<div class='col-sm-9'><div class='result average'>{0} päivän<br />keskiarvo: {1:0} kWh\n", consumption_data.Count(), (average / consumption_data.Count())));
                     /* GRAPH */
                     Response.Write("<canvas id='result_graph'>Seilaimessasi ei ole Canvas tukea</canvas>\n<button id='show_details'>+</button>\n</div>\n</div>\n");
                     /* DETAILS */
-                    Response.Write("<div id='details' class='col-sm-12' style='display:none'>");
+                    Response.Write("<div class='col-sm-3 result'><div id='day_details'></div></div>");
+                    Response.Write("<div id='details' class='col-sm-12' style='display:none'><ul>");
                     foreach(ConsumptionData item in consumption_data)
                     {
-                        Response.Write(string.Format("<div class='col-sm-2'><div class='result'>{0}<br />{1} C<br />{2:0} kWh</div></div>\n", item.date.ToShortDateString(), item.temperature, item.consumption_avg));
+                        Response.Write(string.Format("<li><div>{0} {1:0.0} C {2:0} kWh</div></li>\n", item.date.ToShortDateString(), item.temperature, item.consumption_avg));
                     }
-                    Response.Write("</div>");
+                    Response.Write("</ul></div>\n");
                 }
             %>
         </div>
@@ -173,9 +174,9 @@
             var decimal_count = 0;
             /* Colors */
             var temperature_color = "#FF0000";
-            var temperature_text_color = "#000000";
+            var temperature_text_color = "#FF0000";
             var bar_color = "#0000FF";
-            var bar_text_color = "#000000";
+            var bar_text_color = "#0000FF";
             var line_color = "#BCBCBC";
             var date_color = "#000000";
             /* Scaling */
@@ -246,6 +247,11 @@
             }
             context.lineTo(graph.width - legend_padding - bar_width, y_temperature);
             context.stroke();
+            $("#result_graph").mousemove(function(event){
+                var rect = graph.getBoundingClientRect();
+                var x = Math.floor((event.clientX - rect.left) / (rect.right - rect.left) * graph.width);
+                $("#day_details").html("X = " + x);
+            });
         }
     </script>
 </body>
