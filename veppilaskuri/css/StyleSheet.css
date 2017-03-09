@@ -69,13 +69,11 @@ footer {
 
 /* COLORS */
 header {
-    background-color: darkblue;
-    background: linear-gradient(darkblue, deepskyblue);
+    background-color: #D5FFCC;
     color: #FFF;
 }
 #title {
     background-color: deepskyblue;
-    background: linear-gradient(deepskyblue, lightskyblue);
     color: #FFF;
 }
 #results {
