@@ -66,16 +66,27 @@ public partial class _Default : System.Web.UI.Page
                 ConsumptionData data = new ConsumptionData();
                 data.date = DateTime.Now.AddDays(days_count);
                 data.temperature = (float)day.temp.day;
-                if(Math.Abs(data.temperature) > max_temperature)
+                data.img_url = string.Format("http://openweathermap.org/img/w/{0}.png", day.weather[0].icon);
+                if (Math.Abs(data.temperature) > max_temperature)
                 {
                     max_temperature = Math.Abs(data.temperature);
                 }
-                data.consumption_low = (temp_in - day_average) * eclass_lower_multiplier;
-                data.consumption_up = (temp_in - day_average) * eclass_upper_multiplier;
-                data.consumption_avg = (data.consumption_low + data.consumption_up) / 2;
-                if (data.consumption_avg > max_consumption_avg)
+                float temp_difference = (temp_in - day_average);
+                if (temp_difference > 0)
                 {
-                    max_consumption_avg = data.consumption_avg;
+                    data.consumption_low = temp_difference * eclass_lower_multiplier;
+                    data.consumption_up = temp_difference * eclass_upper_multiplier;
+                    data.consumption_avg = (data.consumption_low + data.consumption_up) / 2;
+                    if (data.consumption_avg > max_consumption_avg)
+                    {
+                        max_consumption_avg = data.consumption_avg;
+                    }
+                }
+                else
+                {
+                    data.consumption_low = 0;
+                    data.consumption_up = 0;
+                    data.consumption_avg = 0;
                 }
                 consumption_data[days_count] = data;
                 days_count++;
@@ -112,4 +123,5 @@ public class ConsumptionData
     public float consumption_low;
     public float consumption_up;
     public float consumption_avg;
+    public string img_url;
 }

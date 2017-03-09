@@ -51,7 +51,6 @@
 
         </div>
         <div class="row" id="results">
-            <div class="col-sm-12">
             <%
                 if(consumption_data != null)
                 {
@@ -63,18 +62,11 @@
                     /* HEADER */
                     Response.Write(string.Format("<div class='col-sm-9'><div class='result average'>{0} päivän<br />keskiarvo: {1:0} kWh\n", consumption_data.Count(), (average / consumption_data.Count())));
                     /* GRAPH */
-                    Response.Write("<canvas id='result_graph'>Seilaimessasi ei ole Canvas tukea</canvas>\n<button id='show_details'>+</button>\n</div>\n</div>\n");
+                    Response.Write("<canvas id='result_graph'>Seilaimessasi ei ole Canvas tukea</canvas>\n</div>\n</div>\n");
                     /* DETAILS */
-                    Response.Write("<div class='col-sm-3 result'><div id='day_details'></div></div>");
-                    Response.Write("<div id='details' class='col-sm-12' style='display:none'><ul>");
-                    foreach(ConsumptionData item in consumption_data)
-                    {
-                        Response.Write(string.Format("<li><div>{0} {1:0.0} C {2:0} kWh</div></li>\n", item.date.ToShortDateString(), item.temperature, item.consumption_avg));
-                    }
-                    Response.Write("</ul></div>\n");
+                    Response.Write("<div class='col-sm-3'><div id='day_details' class='result'></div></div>");
                 }
             %>
-            </div>
         </div>
         <div class="row" id="main">
             <div class="col-sm-6">
@@ -202,7 +194,7 @@
             var line_count = 4;
             var temperature_line_count = 4;
             var temperature_line_size = 3;
-            var dot_size = 4;
+            var dot_size = 3;
             var consumption_step = 50;
             var temperature_step = 10;
             var decimal_count = 0;
@@ -288,7 +280,7 @@
                 {
                     var id = Math.floor((x - legend_padding) / (graph.width - legend_padding * 2) * items_count);
                     var date = new Date(parseInt(consumption_data[id].date.replace("\/Date(", "").replace(")\/", "")));
-                    $("#day_details").html(date.toDateString() + "<br />Lämpötila: " + consumption_data[id].temperature.toFixed(decimal_count) + " &#8451;<br />Kulutus: " + consumption_data[id].consumption_avg.toFixed(decimal_count) + " Kwh");
+                    $("#day_details").html("<img src='" + consumption_data[id].img_url + "'><br />" + date.toDateString() + "<br />Lämpötila: " + consumption_data[id].temperature.toFixed(decimal_count) + " &#8451;<br />Kulutus: " + consumption_data[id].consumption_avg.toFixed(decimal_count) + " kWh");
                 }
             });
         }
