@@ -69,22 +69,22 @@ footer {
 
 /* COLORS */
 header {
-    background-color: #D5FFCC;
+    background-color: #4CBB17;
     color: #FFF;
 }
 #title {
-    background-color: deepskyblue;
+    background-color: #71FF54;
     color: #FFF;
 }
 #results {
-    background-color: lightskyblue;
+    background-color: #388E8E;
     min-height: 100%;
 }
 #result_graph{
     background-color: #FFF;
 }
 #main {
-    background-color: forestgreen;
+    background-color: #4CBB17;
 }
 #Lomake {
     background-color: antiquewhite;
