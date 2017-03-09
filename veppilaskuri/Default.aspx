@@ -76,28 +76,52 @@
         <div class="row" id="main">
             <div class="col-sm-6">
                 <div id="Lomake" class="col-sm-12">
-                    <form id="form1" method="post" runat="server">
+                    <form id="form1" class="form-horizontal" method="post" runat="server">
                         <div class="form-group">
-                            <label for="size">Talon koko</label>
-                            <input name="size" id="size" type="number" step="0.1" class="form-control" required />
-                            <label for="eclass">Energialuokka</label>
-                            <select name="eclass" id="eclass" class="form-control">
-                                <option>A</option>
-                                <option>B</option>
-                                <option>C</option>
-                                <option>D</option>
-                                <option>E</option>
-                                <option>F</option>
-                                <option>G</option>
-                            </select>
-                            <label for="temperature">Sisälämpötila</label>
-                            <input name="temperature" id="temperature" type="number" value="20" step="0.1" class="form-control" required/>
-                            <label for="days">Päivien lukumäärä</label>
-                            <input name="days" id="days" type="number" value="7" min="1" max="16" class="form-control" required /><br />
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
-                                <input name="town" id="town" placeholder="Kunta" class="form-control" required/>
-                            </div><br />
+                            <div class="row">
+                                <label for="size" class="col-sm-2 col-sm-offset-1 control-label">Talon koko</label>
+                                <div class="input-group col-sm-8">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                                    <input name="size" id="size" type="number" step="0.1" class="form-control" required />
+                                </div>
+                            </div>
+                            <div class="row">                            
+                                <label for="eclass" class="col-sm-2 col-sm-offset-1 control-label">Energialuokka</label>
+                                 <div class="input-group col-sm-8">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                                   <select name="eclass" id="eclass" class="form-control">
+                                        <option>A</option>
+                                        <option>B</option>
+                                        <option>C</option>
+                                        <option>D</option>
+                                        <option>E</option>
+                                        <option>F</option>
+                                        <option>G</option>
+                                    </select>
+                                </div>
+                            </div>                            
+                            <div class="row">
+                                <label for="temperature" class="col-sm-2 col-sm-offset-1 control-label">Sisälämpötila</label>
+                                <div class="input-group col-sm-8">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                                    <input name="temperature" id="temperature" type="number" value="20" step="0.1" class="form-control" required/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label for="days" class="col-sm-2 col-sm-offset-1 control-label">Päivien lukumäärä</label>
+                                <div class="input-group col-sm-8">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                                    <input name="days" id="days" type="number" value="7" min="1" max="16" class="form-control" required />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label for="town" class="col-sm-2 col-sm-offset-1 control-label">Kunta</label>
+                                <div class="input-group col-sm-8">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                                    <input name="town" id="town" placeholder="Kunta" class="form-control" required/>
+                                </div>
+                            </div>
+                            <br />
                             <input id="submit" type="submit" value="Laske" class="btn btn-primary" disabled />
                         </div>
                     </form>
@@ -113,13 +137,21 @@
                         <h3>Talon koko</h3>
                         <p>Talon koko annetaan neliömetreinä.</p>
                     </div>
-                    <div id="ohje-kunta" class="ohje col-md-12">
-                        <h3>Kunta</h3>
-                        <p>Kirjoita kunnan nimestä muutama ensimmäinen kirjain ja valitse kunta valikosta</p>
-                    </div>
                     <div id="ohje-energialuokka" class="ohje col-md-12">
                         <h3>Energialuokka</h3>
                         <p>Talojen energialuokat on listattu wikipediassa.</p>
+                    </div>                    <div id="ohje-lampotila" class="ohje col-md-12">
+                        <h3>Sisälämpötila</h3>
+                        <p>Anna haluttu sisälämpötila. Rakennuksien ja asuntojen halutut sisälämpötilat vaihtelevat 15 asteesta ylöspäin tyhjissä asunnoissa ja aktiivikäytössä aina 30 asteeseen asti.</p>
+                    </div>
+
+                    <div id="ohje-paivat" class="ohje col-md-12">
+                        <h3>Päivät</h3>
+                        <p>Valitse kuinka monta päivää haluat nähdä ennusteessa. Oletus 7 päivää.</p>
+                    </div>
+                    <div id="ohje-kunta" class="ohje col-md-12">
+                        <h3>Kunta</h3>
+                        <p>Kirjoita kunnan nimestä muutama ensimmäinen kirjain ja valitse kunta valikosta</p>
                     </div>
                 </div>
             </div>

@@ -1,21 +1,39 @@
 ﻿$(document).ready(function () {
-    $(".ohje").hide();
+    $("#ohje-perus").fadeIn();
 
-    $("input").hover(
-      function () {
-          $("#ohje-perus").fadeIn();
-      }, function () {
-          $("#ohje-perus").fadeOut();
-      }
-    );
-
-    $("input #eclass").hover(
-      function () {
+    $("#size").on('focus hover',
+      function (e) {
+          $(".ohje").hide();
           $("#ohje-talokoko").fadeIn();
-      }, function () {
-          $("#ohje-talokoko").fadeOut();
       }
     );
 
+    $("#eclass").on('focus hover',
+      function (e) {
+          $(".ohje").hide();
+          $("#ohje-energialuokka").fadeIn();
+      }
+    );
+
+    $("#temperature").on('focus hover',
+      function (e) {
+          $(".ohje").hide();
+          $("#ohje-lampotila").fadeIn();
+      }
+    );
+
+    $("#days").on('focus hover',
+      function (e) {
+          $(".ohje").hide();
+          $("#ohje-paivat").fadeIn();
+      }
+    );
+
+    $("#town").on('focus hover',
+      function (e) {
+          $(".ohje").hide();
+          $("#ohje-kunta").fadeIn();
+      }
+    );
 });
 

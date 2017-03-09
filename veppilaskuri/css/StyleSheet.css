@@ -31,6 +31,9 @@ footer {
     clear: both;
     text-align: center;
 }
+.ohje {
+    display: none;
+}
 #title {
     text-align: center;
 }
