@@ -60,7 +60,7 @@
                         average += item.consumption_avg;
                     }
                     /* HEADER */
-                    Response.Write(string.Format("<div class='col-sm-9'><div class='result average'>{0} päivän<br />keskiarvo: {1:0} kWh\n", consumption_data.Count(), (average / consumption_data.Count())));
+                    Response.Write(string.Format("<div class='col-sm-9'><div class='result average'>{2}, energialuokka: {3}<br />{0} päivän keskiarvo: {1:0} kWh\n", consumption_data.Count(), (average / consumption_data.Count()), Request["town"], Request["eclass"]));
                     /* GRAPH */
                     Response.Write("<canvas id='result_graph'>Seilaimessasi ei ole Canvas tukea</canvas>\n</div>\n</div>\n");
                     /* DETAILS */
