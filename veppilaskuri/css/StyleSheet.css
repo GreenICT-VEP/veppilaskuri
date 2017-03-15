@@ -48,6 +48,10 @@ footer {
     margin-bottom: 10px;
     min-height: 488px;
 }
+.image_weather{
+    width: 100px;
+    height: 100px;
+}
 .result {
     border: solid 2px #FFF;
 }

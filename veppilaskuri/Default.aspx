@@ -280,7 +280,7 @@
                 {
                     var id = Math.floor((x - legend_padding) / (graph.width - legend_padding * 2) * items_count);
                     var date = new Date(parseInt(consumption_data[id].date.replace("\/Date(", "").replace(")\/", "")));
-                    $("#day_details").html("<img src='" + consumption_data[id].img_url + "'><br />" + date.toDateString() + "<br />Lämpötila: " + consumption_data[id].temperature.toFixed(decimal_count) + " &#8451;<br />Kulutus: " + consumption_data[id].consumption_avg.toFixed(decimal_count) + " kWh");
+                    $("#day_details").html("<img src='" + consumption_data[id].img_url + "' class='image_weather'><br />" + date.toDateString() + "<br />Lämpötila: " + consumption_data[id].temperature.toFixed(decimal_count) + " &#8451;<br />Kulutus: " + consumption_data[id].consumption_avg.toFixed(decimal_count) + " kWh");
                 }
             });
         }
