@@ -32,12 +32,12 @@
 
     <header>
         <img src="pics/energia_logo.png" alt="Energia Logo"/>
-        <h1>ENERGIALASKURI</h1>
+        <h1>Energialaskuri</h1>
     </header>
     <div class="container-fluid">
 
         <div class="row" id="title">
-            <div id="Esittely" class="col-md-8">
+            <div id="Esittely" class="col-md-6 col-sm-offset-1 ">
                 <p>
                     Energialaskuri osa Lahden ammattikorkeakoulun GreenICT-projektia. 
                     Sivuston tarkoituksena on osoittaa opiskelijoiden kyky hakea tietoa käyttäjän antamista ja ulkoisista lähteistä.
@@ -46,7 +46,7 @@
                 </p>
             </div>
             <div id="#Esittely-kuva" class="col-md-4">
-                <img src="pics/taustallinen2.png" alt="Esittelykuva" style="max-height: 200px;"/>
+                <img src="pics/taustallinen2.png" alt="Esittelykuva" id="esittelykuva"/>
             </div>
 
         </div>
@@ -76,14 +76,14 @@
                             <div class="row">
                                 <label for="size" class="col-sm-2 col-sm-offset-1 control-label">Talon koko</label>
                                 <div class="input-group col-sm-8">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-bed"></i></span>
                                     <input name="size" id="size" type="number" step="0.1" class="form-control" required />
                                 </div>
                             </div>
                             <div class="row">                            
                                 <label for="eclass" class="col-sm-2 col-sm-offset-1 control-label">Energialuokka</label>
                                  <div class="input-group col-sm-8">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-flash"></i></span>
                                    <select name="eclass" id="eclass" class="form-control">
                                         <option>A</option>
                                         <option>B</option>
@@ -98,21 +98,21 @@
                             <div class="row">
                                 <label for="temperature" class="col-sm-2 col-sm-offset-1 control-label">Sisälämpötila</label>
                                 <div class="input-group col-sm-8">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-dashboard"></i></span>
                                     <input name="temperature" id="temperature" type="number" value="20" step="0.1" class="form-control" required/>
                                 </div>
                             </div>
                             <div class="row">
                                 <label for="days" class="col-sm-2 col-sm-offset-1 control-label">Päivien lukumäärä</label>
                                 <div class="input-group col-sm-8">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-stats"></i></span>
                                     <input name="days" id="days" type="number" value="7" min="1" max="16" class="form-control" required />
                                 </div>
                             </div>
                             <div class="row">
                                 <label for="town" class="col-sm-2 col-sm-offset-1 control-label">Kunta</label>
                                 <div class="input-group col-sm-8">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
                                     <input name="town" id="town" placeholder="Kunta" class="form-control" required/>
                                 </div>
                             </div>
@@ -153,6 +153,10 @@
         </div>
     </div>
     <footer>
+        <a href="http://reppu.lamk.fi/course/view.php?id=12778" target="_blank"><img src="pics/lamk_merkki_nega.png" alt="LAMK" class="logo" /></a>
+        <a href="http://openweathermap.org/" target="_blank"><img src="pics/OpenWeatherMap_logo.png" alt="LAMK" class="logo" /></a>
+        <a href="https://github.com/GreenICT-VEP/veppilaskuri/" target="_blank"><img src="pics/github-gray.png" alt="Github" class="logo" /></a>
+        <br />
         &copy; 2017 GreenICT - VEP - Sampo Harjula, Joni Juntunen, Niko Pafitis, Taina Rytkönen
     </footer>
     <script>

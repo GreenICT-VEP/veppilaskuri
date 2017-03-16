@@ -12,20 +12,20 @@ body {
     color: #121212;
     min-height: 100%;
 }
-img {
-
-}
 header {
     height: 150px;
+    text-align: center;
 }
 p {
-    font-size: 20px;
+    text-indent: 2em;
+    font-size: 1.5em;
     text-align: justify;
 }
 h1 {
     display: inline;
-    font-size: 50px;
+    font-size: 4em;
     font-weight: bold;
+    text-transform: uppercase;
 }
 footer {
     clear: both;
@@ -36,6 +36,15 @@ footer {
 }
 #title {
     text-align: center;
+}
+#esittelykuva{
+    max-height: 400px;
+}
+.logo {
+    height: 100px;
+    padding: 20px 50px 20px 50px;
+    opacity: 0.5;
+    filter: alpha(opacity=50); /* For IE8 and earlier */
 }
 .result, #Lomake, #Ohjeita{
     padding: 10px;
