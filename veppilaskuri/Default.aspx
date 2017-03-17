@@ -83,21 +83,21 @@
                                 <label for="size" class="col-sm-2 col-sm-offset-1 control-label">Talon koko</label>
                                 <div class="input-group col-sm-8">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-bed"></i></span>
-                                    <input name="size" id="size" type="number" step="0.1" class="form-control" required />
+                                    <input name="size" id="size" type="number" step="0.1" class="form-control" required <% if (Request["size"] != null) { Response.Write(string.Format("value={0}", Request["size"])); } %> />
                                 </div>
                             </div>
                             <div class="row">                            
                                 <label for="eclass" class="col-sm-2 col-sm-offset-1 control-label">Energialuokka</label>
                                  <div class="input-group col-sm-8">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-flash"></i></span>
-                                   <select name="eclass" id="eclass" class="form-control">
-                                        <option>A</option>
-                                        <option>B</option>
-                                        <option>C</option>
-                                        <option>D</option>
-                                        <option>E</option>
-                                        <option>F</option>
-                                        <option>G</option>
+                                   <select name="eclass" id="eclass" class="form-control" autocomplete="off" > <!-- Firefox needs the autocomplete to show the selection -->
+                                        <option <% if (Request["eclass"] != null) { if (Request["eclass"] == "A") { Response.Write("selected='selected'"); }} %>>A</option>
+                                        <option <% if (Request["eclass"] != null) { if (Request["eclass"] == "B") { Response.Write("selected='selected'"); }} %>>B</option>
+                                        <option <% if (Request["eclass"] != null) { if (Request["eclass"] == "C") { Response.Write("selected='selected'"); }} %>>C</option>
+                                        <option <% if (Request["eclass"] != null) { if (Request["eclass"] == "D") { Response.Write("selected='selected'"); }} %>>D</option>
+                                        <option <% if (Request["eclass"] != null) { if (Request["eclass"] == "E") { Response.Write("selected='selected'"); }} %>>E</option>
+                                        <option <% if (Request["eclass"] != null) { if (Request["eclass"] == "F") { Response.Write("selected='selected'"); }} %>>F</option>
+                                        <option <% if (Request["eclass"] != null) { if (Request["eclass"] == "G") { Response.Write("selected='selected'"); }} %>>G</option>
                                     </select>
                                 </div>
                             </div>                            
@@ -105,21 +105,21 @@
                                 <label for="temperature" class="col-sm-2 col-sm-offset-1 control-label">Sisälämpötila</label>
                                 <div class="input-group col-sm-8">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-dashboard"></i></span>
-                                    <input name="temperature" id="temperature" type="number" value="20" step="0.1" class="form-control" required/>
+                                    <input name="temperature" id="temperature" type="number" <% if (Request["temperature"] != null) { Response.Write(string.Format("value={0}", Request["temperature"])); } else { Response.Write("value='20'"); } %> step="0.1" class="form-control" required/>
                                 </div>
                             </div>
                             <div class="row">
                                 <label for="days" class="col-sm-2 col-sm-offset-1 control-label">Päivien lukumäärä</label>
                                 <div class="input-group col-sm-8">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-stats"></i></span>
-                                    <input name="days" id="days" type="number" value="7" min="1" max="16" class="form-control" required />
+                                    <input name="days" id="days" type="number" <% if (Request["days"] != null) { Response.Write(string.Format("value={0}", Request["days"])); } else { Response.Write("value='7'"); } %> min="1" max="16" class="form-control" required />
                                 </div>
                             </div>
                             <div class="row">
                                 <label for="town" class="col-sm-2 col-sm-offset-1 control-label">Kunta</label>
                                 <div class="input-group col-sm-8">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
-                                    <input name="town" id="town" placeholder="Kunta" class="form-control" required/>
+                                    <input name="town" id="town" placeholder="Kunta" class="form-control" required <% if (Request["town"] != null) { Response.Write(string.Format("value={0}", Request["town"])); } %> />
                                 </div>
                             </div>
                             <br />
