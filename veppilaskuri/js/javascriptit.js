@@ -1,64 +1,79 @@
-﻿$(document).ready(function () {
+﻿/*
+    GreenICT - VEP 
+    veppilaskuri javascriptit.js
+
+*/
+$(document).ready(function () {
 
     $("#ohje-perus").fadeIn();
 
     $("#size")
-        .hover(function () {
+        .mouseenter(function () {
             $("#ohje-talokoko").fadeIn();
-        }, function(){
-            $("#ohje-talokoko").hide()
         })
-        .focus(function () {
+        .focusin(function () {
             $("#ohje-talokoko").fadeIn();
-        }, function(){
+        })
+        .focusout(function () {
+            $("#ohje-talokoko").hide();
+        })
+        .mouseout(function () {
             $("#ohje-talokoko").hide()
         });
 
     $("#eclass")
-        .hover(function () {
+        .mouseenter(function () {
             $("#ohje-energialuokka").fadeIn();
-        }, function () {
-            $("#ohje-energialuokka").hide()
         })
-        .focus(function () {
+        .focusin(function () {
             $("#ohje-energialuokka").fadeIn();
-        }, function () {
+        })
+        .focusout(function () {
+            $("#ohje-energialuokka").hide();
+        })
+        .mouseout(function () {
             $("#ohje-energialuokka").hide()
         });
 
     $("#temperature")
-        .hover(function () {
+        .mouseenter(function () {
             $("#ohje-lampotila").fadeIn();
-        }, function () {
-            $("#ohje-lampotila").hide()
         })
-        .focus(function () {
+        .focusin(function () {
             $("#ohje-lampotila").fadeIn();
-        }, function () {
+        })
+        .focusout(function () {
+            $("#ohje-lampotila").hide();
+        })
+        .mouseout(function () {
             $("#ohje-lampotila").hide()
         });
 
     $("#days")
-        .hover(function () {
+        .mouseenter(function () {
             $("#ohje-paivat").fadeIn();
-        }, function () {
-            $("#ohje-paivat").hide()
         })
-        .focus(function () {
+        .focusin(function () {
             $("#ohje-paivat").fadeIn();
-        }, function () {
+        })
+        .focusout(function () {
+            $("#ohje-paivat").hide();
+        })
+        .mouseout(function () {
             $("#ohje-paivat").hide()
         });
 
     $("#town")
-        .hover(function () {
+        .mouseenter(function () {
             $("#ohje-kunta").fadeIn();
-        }, function () {
-            $("#ohje-kunta").hide()
         })
-        .focus(function () {
+        .focusin(function () {
             $("#ohje-kunta").fadeIn();
-        }, function () {
+        })
+        .focusout(function () {
+            $("#ohje-kunta").hide();
+        })
+        .mouseout(function () {
             $("#ohje-kunta").hide()
         });
 });

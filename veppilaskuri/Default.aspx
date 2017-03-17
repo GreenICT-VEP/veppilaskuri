@@ -35,18 +35,24 @@
         <h1>Energialaskuri</h1>
     </header>
     <div class="container-fluid">
-
         <div class="row" id="title">
             <div id="Esittely" class="col-md-6 col-sm-offset-1 ">
                 <p>
                     Energialaskuri osa Lahden ammattikorkeakoulun GreenICT-projektia. 
                     Sivuston tarkoituksena on osoittaa opiskelijoiden kyky hakea tietoa käyttäjän antamista ja ulkoisista lähteistä.
                     Projektin tarkoituksena on luoda käyttäjäystävällinen ja intuitiivinen käyttöliittymä tiedon syöttämiseen ja tulostamiseen. 
-
+                </p>
+                <p>
+                    VEP-ryhmä on suunnitellut sivuston käyttöliittymän ja toiminnallisuuden Pencil-ohjelmalla ja toteuttanut sivuston toiminnallisuuden C#-kielellä .NET-ympäristössä.
+                    Sivuston layout on asetettu Bootstrap-kirjaston avulla. Ohjetekstit tuodaan esille jQuery-kirjaston eventeillä. Lomake on HTML5 koodia lisättynä Glyphiconeilla.
+                    Lopputuloksen esittely Canvas-elementillä on kirjoitettu alusta loppuun projektin sisällä.
+                </p>
+                <p>
+                    Sivuston ohjelmakoodi on nähtävissä Githubissa. Projektin lopputulos ajetaan LAMK:n sisäverkossa IISi-palvelimella osoitteessa iis01.lamk.fi
                 </p>
             </div>
             <div id="#Esittely-kuva" class="col-md-4">
-                <img src="pics/taustallinen2.png" alt="Esittelykuva" id="esittelykuva"/>
+                <img src="pics/taustaton2.png" alt="Esittelykuva" id="esittelykuva"/>
             </div>
 
         </div>
@@ -135,7 +141,8 @@
                     <div id="ohje-energialuokka" class="ohje col-md-12">
                         <h3>Energialuokka</h3>
                         <p>Talojen energialuokat on listattu wikipediassa.</p>
-                    </div>                    <div id="ohje-lampotila" class="ohje col-md-12">
+                    </div>                    
+                    <div id="ohje-lampotila" class="ohje col-md-12">
                         <h3>Sisälämpötila</h3>
                         <p>Anna haluttu sisälämpötila. Rakennuksien ja asuntojen halutut sisälämpötilat vaihtelevat 15 asteesta ylöspäin tyhjissä asunnoissa ja aktiivikäytössä aina 30 asteeseen asti.</p>
                     </div>
