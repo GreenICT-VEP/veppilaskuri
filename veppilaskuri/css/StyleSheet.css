@@ -24,7 +24,7 @@ header {
     padding: 20px 20px 20px 20px;
 }
 p {
-    text-indent: 2em;
+    /*text-indent: 2em;*/
     font-size: 1.25em;
     text-align: justify;
 }
@@ -53,7 +53,7 @@ footer {
     opacity: 0.5;
     filter: alpha(opacity=50); /* For IE8 and earlier */
 }
-.result, #Lomake, #Ohjeita, #Esittely{
+.result, .result-graph, #Lomake, #Ohjeita, #Esittely {
     padding: 25px;
     border-radius: 5px;
     box-sizing: border-box;
@@ -62,18 +62,38 @@ footer {
     background-color: #FFF;
     margin-bottom: 10px;
 }
-.result{
+.result-graph{
     min-height: 500px;
 }
+.result{
+    min-height: 150px;
+}
+#day-details{
+    /* graph element - average element - margin - border */
+    min-height: calc(500px - 150px - 10px - 1.6px);
+}
 #Lomake, #Ohjeita{
-    min-height: 350px;
+    min-height: 375px;
+}
+.form-item{
+    padding-bottom: 10px;
+}
+input, select {
+    font-size: 1.5em !important;
+    height: 2em !important;
+}
+.glyphicon{
+    font-size: 1.5em !important;
 }
 .image_weather{
-    width: 125px;
-    height: 125px;
+    width: 110px;
+    height: 110px;
 }
 .day-details, .average{
     font-size: 1.25em;
+}
+#final_avg {
+    font-size: 2em;
 }
 .result {
     border: solid 2px #FFF;
@@ -94,8 +114,8 @@ footer {
 /* COLORS */
 header {
     /*background-color: #4CBB17;*/
-    color: #00FF00;
-    text-shadow: 2px 2px 2px #000;
+    color: #3137FD;
+    text-shadow: 2px 2px 2px #000
 }
 #title {
     /*background-color: #71FF54;*/
@@ -112,10 +132,10 @@ header {
     /*background-color: #4CBB17;*/
 }
 #Lomake {
-    background-color: antiquewhite;
+    background-color: #FFF;
 }
 #Ohjeita {
-    background-color: antiquewhite;
+    background-color: #FFF;
 }
 footer {
     background-color: #000;
