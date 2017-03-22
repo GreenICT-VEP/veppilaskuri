@@ -8,72 +8,92 @@ $(document).ready(function () {
     $("#ohje-perus").fadeIn();
 
     $("#size")
-        .mouseenter(function () {
-            $("#ohje-talokoko").fadeIn();
+        .mouseover(function () {
+            $("#ohje-perus").hide();
+            $("#ohje-talokoko").show();
         })
         .focusin(function () {
-            $("#ohje-talokoko").fadeIn();
+            $("#ohje-perus").hide();
+            $("#ohje-talokoko").show();
         })
         .focusout(function () {
+            $("#ohje-perus").show();
             $("#ohje-talokoko").hide();
         })
         .mouseout(function () {
+            $("#ohje-perus").show();
             $("#ohje-talokoko").hide()
         });
 
     $("#eclass")
-        .mouseenter(function () {
-            $("#ohje-energialuokka").fadeIn();
+        .mouseover(function () {
+            $("#ohje-perus").hide();
+            $("#ohje-energialuokka").show();
         })
         .focusin(function () {
-            $("#ohje-energialuokka").fadeIn();
+            $("#ohje-perus").hide();
+            $("#ohje-energialuokka").show();
         })
         .focusout(function () {
+            $("#ohje-perus").show();
             $("#ohje-energialuokka").hide();
         })
         .mouseout(function () {
+            $("#ohje-perus").show();
             $("#ohje-energialuokka").hide()
         });
 
     $("#temperature")
-        .mouseenter(function () {
-            $("#ohje-lampotila").fadeIn();
+        .mouseover(function () {
+            $("#ohje-perus").hide();
+            $("#ohje-lampotila").show();
         })
         .focusin(function () {
-            $("#ohje-lampotila").fadeIn();
+            $("#ohje-perus").hide();
+            $("#ohje-lampotila").show();
         })
         .focusout(function () {
+            $("#ohje-perus").show();
             $("#ohje-lampotila").hide();
         })
         .mouseout(function () {
+            $("#ohje-perus").show();
             $("#ohje-lampotila").hide()
         });
 
     $("#days")
-        .mouseenter(function () {
-            $("#ohje-paivat").fadeIn();
+        .mouseover(function () {
+            $("#ohje-perus").hide();
+            $("#ohje-paivat").show();
         })
         .focusin(function () {
-            $("#ohje-paivat").fadeIn();
+            $("#ohje-perus").hide();
+            $("#ohje-paivat").show();
         })
         .focusout(function () {
+            $("#ohje-perus").show();
             $("#ohje-paivat").hide();
         })
         .mouseout(function () {
+            $("#ohje-perus").show();
             $("#ohje-paivat").hide()
         });
 
     $("#town")
-        .mouseenter(function () {
-            $("#ohje-kunta").fadeIn();
+        .mouseover(function () {
+            $("#ohje-perus").hide();
+            $("#ohje-kunta").show();
         })
         .focusin(function () {
-            $("#ohje-kunta").fadeIn();
+            $("#ohje-perus").hide();
+            $("#ohje-kunta").show();
         })
         .focusout(function () {
+            $("#ohje-perus").show();
             $("#ohje-kunta").hide();
         })
         .mouseout(function () {
+            $("#ohje-perus").show();
             $("#ohje-kunta").hide()
         });
 });
