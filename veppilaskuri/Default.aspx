@@ -29,131 +29,133 @@
     <script src="js/javascriptit.js"></script>
 </head>
 <body>
-
-    <header>
-        <img src="pics/energia_logo.png" alt="Energia Logo"/>
-        <h1>Energialaskuri</h1>
-    </header>
-    <div class="container-fluid">
-        <div class="row" id="title">
-            <div id="Esittely" class="col-md-6 col-sm-offset-1 ">
-                <p>
-                    Energialaskuri osa Lahden ammattikorkeakoulun GreenICT-projektia. 
-                    Sivuston tarkoituksena on osoittaa opiskelijoiden kyky hakea tietoa käyttäjän antamista ja ulkoisista lähteistä.
-                    Projektin tarkoituksena on luoda käyttäjäystävällinen ja intuitiivinen käyttöliittymä tiedon syöttämiseen ja tulostamiseen. 
-                </p>
-                <p>
-                    VEP-ryhmä on suunnitellut sivuston käyttöliittymän ja toiminnallisuuden Pencil-ohjelmalla ja toteuttanut sivuston toiminnallisuuden C#-kielellä .NET-ympäristössä.
-                    Sivuston layout on asetettu Bootstrap-kirjaston avulla. Ohjetekstit tuodaan esille jQuery-kirjaston eventeillä. Lomake on HTML5 koodia lisättynä Glyphiconeilla.
-                    Lopputuloksen esittely Canvas-elementillä on kirjoitettu alusta loppuun projektin sisällä.
-                </p>
-                <p>
-                    Sivuston ohjelmakoodi on nähtävissä Githubissa. Projektin lopputulos ajetaan LAMK:n sisäverkossa IISi-palvelimella osoitteessa iis01.lamk.fi
-                </p>
-            </div>
-            <div id="#Esittely-kuva" class="col-md-4">
-                <img src="pics/taustaton2.png" alt="Esittelykuva" id="esittelykuva"/>
-            </div>
-
-        </div>
-        <div class="row" id="results">
-            <%
-                if(consumption_data != null)
-                {
-                    float average = 0;
-                    foreach(ConsumptionData item in consumption_data)
-                    {
-                        average += item.consumption_avg;
-                    }
-                    /* HEADER */
-                    Response.Write(string.Format("<div class='col-sm-9'><div class='result average'>{2}, energialuokka: {3}<br />{0} päivän keskiarvo: {1:0} kWh\n", consumption_data.Count(), (average / consumption_data.Count()), Request["town"], Request["eclass"]));
-                    /* GRAPH */
-                    Response.Write("<canvas id='result_graph'>Seilaimessasi ei ole Canvas tukea</canvas>\n</div>\n</div>\n");
-                    /* DETAILS */
-                    Response.Write("<div class='col-sm-3'><div id='day_details' class='result'></div></div>");
-                }
-            %>
-        </div>
-        <div class="row" id="main">
-            <div class="col-sm-6">
-                <div id="Lomake" class="col-sm-12">
-                    <form id="form1" class="form-horizontal" method="post" runat="server">
-                        <div class="form-group">
-                            <div class="row">
-                                <label for="size" class="col-sm-2 col-sm-offset-1 control-label">Talon koko</label>
-                                <div class="input-group col-sm-8">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-bed"></i></span>
-                                    <input name="size" id="size" type="number" step="0.1" class="form-control" required <% if (Request["size"] != null) { Response.Write(string.Format("value={0}", Request["size"])); } %> />
-                                </div>
-                            </div>
-                            <div class="row">                            
-                                <label for="eclass" class="col-sm-2 col-sm-offset-1 control-label">Energialuokka</label>
-                                 <div class="input-group col-sm-8">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-flash"></i></span>
-                                   <select name="eclass" id="eclass" class="form-control" autocomplete="off" > <!-- Firefox needs the autocomplete to show the selection -->
-                                        <option <% if (Request["eclass"] != null) { if (Request["eclass"] == "A") { Response.Write("selected='selected'"); }} %>>A</option>
-                                        <option <% if (Request["eclass"] != null) { if (Request["eclass"] == "B") { Response.Write("selected='selected'"); }} %>>B</option>
-                                        <option <% if (Request["eclass"] != null) { if (Request["eclass"] == "C") { Response.Write("selected='selected'"); }} %>>C</option>
-                                        <option <% if (Request["eclass"] != null) { if (Request["eclass"] == "D") { Response.Write("selected='selected'"); }} %>>D</option>
-                                        <option <% if (Request["eclass"] != null) { if (Request["eclass"] == "E") { Response.Write("selected='selected'"); }} %>>E</option>
-                                        <option <% if (Request["eclass"] != null) { if (Request["eclass"] == "F") { Response.Write("selected='selected'"); }} %>>F</option>
-                                        <option <% if (Request["eclass"] != null) { if (Request["eclass"] == "G") { Response.Write("selected='selected'"); }} %>>G</option>
-                                    </select>
-                                </div>
-                            </div>                            
-                            <div class="row">
-                                <label for="temperature" class="col-sm-2 col-sm-offset-1 control-label">Sisälämpötila</label>
-                                <div class="input-group col-sm-8">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-dashboard"></i></span>
-                                    <input name="temperature" id="temperature" type="number" <% if (Request["temperature"] != null) { Response.Write(string.Format("value={0}", Request["temperature"])); } else { Response.Write("value='20'"); } %> step="0.1" class="form-control" required/>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <label for="days" class="col-sm-2 col-sm-offset-1 control-label">Päivien lukumäärä</label>
-                                <div class="input-group col-sm-8">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-stats"></i></span>
-                                    <input name="days" id="days" type="number" <% if (Request["days"] != null) { Response.Write(string.Format("value={0}", Request["days"])); } else { Response.Write("value='7'"); } %> min="1" max="16" class="form-control" required />
-                                </div>
-                            </div>
-                            <div class="row">
-                                <label for="town" class="col-sm-2 col-sm-offset-1 control-label">Kunta</label>
-                                <div class="input-group col-sm-8">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
-                                    <input name="town" id="town" placeholder="Kunta" class="form-control" required <% if (Request["town"] != null) { Response.Write(string.Format("value={0}", Request["town"])); } %> />
-                                </div>
-                            </div>
-                            <br />
-                            <input id="submit" type="submit" value="Laske" class="btn btn-primary" disabled />
-                        </div>
-                    </form>
+    <div id="content-wrapper">
+        <header>
+            <img src="pics/energia_logo.png" alt="Energia Logo"/>
+            <h1>Energialaskuri</h1>
+        </header>
+        <div class="container-fluid">
+            <div class="row" id="title">
+                <div class="col-sm-10 col-sm-offset-1">
+                    <div id="Esittely" class="col-sm-12">
+                        <p>
+                            Energialaskuri osa Lahden ammattikorkeakoulun GreenICT-projektia. 
+                            Sivuston tarkoituksena on osoittaa opiskelijoiden kyky hakea tietoa käyttäjän antamista ja ulkoisista lähteistä.
+                            Projektin tarkoituksena on luoda käyttäjäystävällinen ja intuitiivinen käyttöliittymä tiedon syöttämiseen ja tulostamiseen. 
+                        </p>
+                        <p>
+                            VEP-ryhmä on suunnitellut sivuston käyttöliittymän ja toiminnallisuuden Pencil-ohjelmalla ja toteuttanut sivuston toiminnallisuuden C#-kielellä .NET-ympäristössä.
+                            Sivuston layout on asetettu Bootstrap-kirjaston avulla. Ohjetekstit tuodaan esille jQuery-kirjaston eventeillä. Lomake on HTML5 koodia lisättynä Glyphiconeilla.
+                            Lopputuloksen esittely Canvas-elementillä on kirjoitettu alusta loppuun projektin sisällä.
+                        </p>
+                        <p>
+                            Sivuston ohjelmakoodi on nähtävissä Githubissa. Projektin lopputulos ajetaan LAMK:n sisäverkossa IISi-palvelimella osoitteessa iis01.lamk.fi
+                        </p>
+                    </div>
+                    <!--<div id="#Esittely-kuva" class="col-md-4">
+                        <img src="pics/taustaton2.png" alt="Esittelykuva" id="esittelykuva"/>
+                    </div>-->
                 </div>
             </div>
-            <div class="col-sm-6">
-                <div id="Ohjeita" class="col-sm-12">
-                    <div id="ohje-perus" class="ohje col-md-12">
-                        <h3>Lomakkeen täyttö</h3>
-                        <p>Syötä pelkkiä numeroita ja valitse alasvetolaatikoista oikea vaihtoehto.</p>
+            <div class="row" id="results">
+                <%
+                    if(consumption_data != null)
+                    {
+                        float average = 0;
+                        foreach(ConsumptionData item in consumption_data)
+                        {
+                            average += item.consumption_avg;
+                        }
+                        /* HEADER */
+                        Response.Write(string.Format("<div class='col-sm-8 col-sm-offset-1'><div class='result average'>{2}, energialuokka: {3}<br />{0} päivän keskiarvo: {1:0} kWh\n", consumption_data.Count(), (average / consumption_data.Count()), Request["town"], Request["eclass"]));
+                        /* GRAPH */
+                        Response.Write("<canvas id='result_graph'>Seilaimessasi ei ole Canvas tukea</canvas>\n</div>\n</div>\n");
+                        /* DETAILS */
+                        Response.Write("<div class='col-sm-2'><div id='day_details' class='result'></div></div>");
+                    }
+                %>
+            </div>
+            <div class="row" id="main">
+                <div class="col-sm-5 col-sm-offset-1">
+                    <div id="Lomake" class="col-sm-12">
+                        <form id="form1" class="form-horizontal" method="post" runat="server">
+                            <div class="form-group">
+                                <div class="row">
+                                    <label for="size" class="col-sm-4 col-sm-offset-1 control-label">Talon koko</label>
+                                    <div class="input-group col-sm-6">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-bed"></i></span>
+                                        <input name="size" id="size" type="number" step="0.1" class="form-control" required <% if (Request["size"] != null) { Response.Write(string.Format("value={0}", Request["size"])); } %> />
+                                    </div>
+                                </div>
+                                <div class="row">                            
+                                    <label for="eclass" class="col-sm-4 col-sm-offset-1 control-label">Energialuokka</label>
+                                     <div class="input-group col-sm-6">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-flash"></i></span>
+                                       <select name="eclass" id="eclass" class="form-control" autocomplete="off" > <!-- Firefox needs the autocomplete to show the selection -->
+                                            <option <% if (Request["eclass"] != null) { if (Request["eclass"] == "A") { Response.Write("selected='selected'"); }} %>>A</option>
+                                            <option <% if (Request["eclass"] != null) { if (Request["eclass"] == "B") { Response.Write("selected='selected'"); }} %>>B</option>
+                                            <option <% if (Request["eclass"] != null) { if (Request["eclass"] == "C") { Response.Write("selected='selected'"); }} %>>C</option>
+                                            <option <% if (Request["eclass"] != null) { if (Request["eclass"] == "D") { Response.Write("selected='selected'"); }} %>>D</option>
+                                            <option <% if (Request["eclass"] != null) { if (Request["eclass"] == "E") { Response.Write("selected='selected'"); }} %>>E</option>
+                                            <option <% if (Request["eclass"] != null) { if (Request["eclass"] == "F") { Response.Write("selected='selected'"); }} %>>F</option>
+                                            <option <% if (Request["eclass"] != null) { if (Request["eclass"] == "G") { Response.Write("selected='selected'"); }} %>>G</option>
+                                        </select>
+                                    </div>
+                                </div>                            
+                                <div class="row">
+                                    <label for="temperature" class="col-sm-4 col-sm-offset-1 control-label">Sisälämpötila</label>
+                                    <div class="input-group col-sm-6">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-dashboard"></i></span>
+                                        <input name="temperature" id="temperature" type="number" <% if (Request["temperature"] != null) { Response.Write(string.Format("value={0}", Request["temperature"])); } else { Response.Write("value='20'"); } %> step="0.1" class="form-control" required/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <label for="days" class="col-sm-4 col-sm-offset-1 control-label">Päivien lukumäärä</label>
+                                    <div class="input-group col-sm-6">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-stats"></i></span>
+                                        <input name="days" id="days" type="number" <% if (Request["days"] != null) { Response.Write(string.Format("value={0}", Request["days"])); } else { Response.Write("value='7'"); } %> min="1" max="16" class="form-control" required />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <label for="town" class="col-sm-4 col-sm-offset-1 control-label">Kunta</label>
+                                    <div class="input-group col-sm-6">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
+                                        <input name="town" id="town" placeholder="Kunta" class="form-control" required <% if (Request["town"] != null) { Response.Write(string.Format("value={0}", Request["town"])); } %> />
+                                    </div>
+                                </div>
+                                <br />
+                                <input id="submit" type="submit" value="Laske" class="btn btn-primary" <%if (consumption_data == null) { Response.Write("disabled"); } %>/>
+                            </div>
+                        </form>
                     </div>
-                    <div id="ohje-talokoko" class="ohje col-md-12">
-                        <h3>Talon koko</h3>
-                        <p>Talon koko annetaan neliömetreinä.</p>
-                    </div>
-                    <div id="ohje-energialuokka" class="ohje col-md-12">
-                        <h3>Energialuokka</h3>
-                        <p>Talojen energialuokat on listattu wikipediassa.</p>
-                    </div>                    
-                    <div id="ohje-lampotila" class="ohje col-md-12">
-                        <h3>Sisälämpötila</h3>
-                        <p>Anna haluttu sisälämpötila. Rakennuksien ja asuntojen halutut sisälämpötilat vaihtelevat 15 asteesta ylöspäin tyhjissä asunnoissa ja aktiivikäytössä aina 30 asteeseen asti.</p>
-                    </div>
+                </div>
+                <div class="col-sm-5">
+                    <div id="Ohjeita" class="col-sm-12">
+                        <div id="ohje-perus" class="ohje col-md-12">
+                            <h3>Lomakkeen täyttö</h3>
+                            <p>Syötä pelkkiä numeroita ja valitse alasvetolaatikoista oikea vaihtoehto.</p>
+                        </div>
+                        <div id="ohje-talokoko" class="ohje col-md-12">
+                            <h3>Talon koko</h3>
+                            <p>Talon koko annetaan neliömetreinä.</p>
+                        </div>
+                        <div id="ohje-energialuokka" class="ohje col-md-12">
+                            <h3>Energialuokka</h3>
+                            <p>Talojen energialuokat on listattu wikipediassa.</p>
+                        </div>                    
+                        <div id="ohje-lampotila" class="ohje col-md-12">
+                            <h3>Sisälämpötila</h3>
+                            <p>Anna haluttu sisälämpötila. Rakennuksien ja asuntojen halutut sisälämpötilat vaihtelevat 15 asteesta ylöspäin tyhjissä asunnoissa ja aktiivikäytössä aina 30 asteeseen asti.</p>
+                        </div>
 
-                    <div id="ohje-paivat" class="ohje col-md-12">
-                        <h3>Päivät</h3>
-                        <p>Valitse kuinka monta päivää haluat nähdä ennusteessa. Oletus 7 päivää.</p>
-                    </div>
-                    <div id="ohje-kunta" class="ohje col-md-12">
-                        <h3>Kunta</h3>
-                        <p>Kirjoita kunnan nimestä muutama ensimmäinen kirjain ja valitse kunta valikosta</p>
+                        <div id="ohje-paivat" class="ohje col-md-12">
+                            <h3>Päivät</h3>
+                            <p>Valitse kuinka monta päivää haluat nähdä ennusteessa. Oletus 7 päivää.</p>
+                        </div>
+                        <div id="ohje-kunta" class="ohje col-md-12">
+                            <h3>Kunta</h3>
+                            <p>Kirjoita kunnan nimestä muutama ensimmäinen kirjain ja valitse kunta valikosta</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -291,7 +293,7 @@
                 {
                     var id = Math.floor((x - legend_padding) / (graph.width - legend_padding * 2) * items_count);
                     var date = new Date(parseInt(consumption_data[id].date.replace("\/Date(", "").replace(")\/", "")));
-                    $("#day_details").html("<img src='" + consumption_data[id].img_url + "' class='image_weather'><br />" + date.toDateString() + "<br />Lämpötila: " + consumption_data[id].temperature.toFixed(decimal_count) + " &#8451;<br />Kulutus: " + consumption_data[id].consumption_avg.toFixed(decimal_count) + " kWh");
+                    $("#day_details").html("<h3>Tarkat tiedot</h3><img src='" + consumption_data[id].img_url + "' class='image_weather'><br /><span class='day-details'>" + date.toDateString() + "<br />Lämpötila: " + consumption_data[id].temperature.toFixed(decimal_count) + " &#8451;<br />Kulutus: " + consumption_data[id].consumption_avg.toFixed(decimal_count) + " kWh</span>");
                 }
             });
         }

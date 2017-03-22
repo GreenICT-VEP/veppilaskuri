@@ -7,10 +7,17 @@ html {
     height: 100%;
 }
 body {
-    background-color: #000;
     font-family: Helvetica, Arial, sans-serif;
     color: #121212;
     min-height: 100%;
+}
+#content-wrapper {
+    background-image: url(/pics/taustallinen3.png);
+    height: 100%;
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 header {
     text-align: center;
@@ -18,7 +25,7 @@ header {
 }
 p {
     text-indent: 2em;
-    font-size: 1.5em;
+    font-size: 1.25em;
     text-align: justify;
 }
 h1 {
@@ -46,26 +53,30 @@ footer {
     opacity: 0.5;
     filter: alpha(opacity=50); /* For IE8 and earlier */
 }
-.result, #Lomake, #Ohjeita{
-    padding: 10px;
-    border: solid 2px #000;
+.result, #Lomake, #Ohjeita, #Esittely{
+    padding: 25px;
     border-radius: 5px;
     box-sizing: border-box;
     text-align: center;
     box-shadow: rgba(0,0,0,0.5) 3px 3px;
     background-color: #FFF;
     margin-bottom: 10px;
-    min-height: 488px;
+}
+.result{
+    min-height: 500px;
+}
+#Lomake, #Ohjeita{
+    min-height: 350px;
 }
 .image_weather{
-    width: 100px;
-    height: 100px;
+    width: 125px;
+    height: 125px;
+}
+.day-details, .average{
+    font-size: 1.25em;
 }
 .result {
     border: solid 2px #FFF;
-}
-.average {
-    font-weight: bold;
 }
 .row{
     padding: 5px !important;
@@ -82,22 +93,23 @@ footer {
 
 /* COLORS */
 header {
-    background-color: #4CBB17;
-    color: #FFF;
+    /*background-color: #4CBB17;*/
+    color: #00FF00;
+    text-shadow: 2px 2px 2px #000;
 }
 #title {
-    background-color: #71FF54;
-    color: #FFF;
+    /*background-color: #71FF54;*/
+    color: #000;
 }
 #results {
-    background-color: #388E8E;
+    /*background-color: #388E8E;*/
     min-height: 100%;
 }
 #result_graph{
     background-color: #FFF;
 }
 #main {
-    background-color: #4CBB17;
+    /*background-color: #4CBB17;*/
 }
 #Lomake {
     background-color: antiquewhite;
