@@ -1,54 +1,99 @@
-﻿$(document).ready(function () {
+﻿/*
+    GreenICT - VEP 
+    veppilaskuri javascriptit.js
+
+*/
+$(document).ready(function () {
+
     $("#ohje-perus").fadeIn();
 
     $("#size")
-        .hover(function () {
-            $(".ohje").hide();
-            $("#ohje-talokoko").fadeIn();
+        .mouseover(function () {
+            $("#ohje-perus").hide();
+            $("#ohje-talokoko").show();
         })
-        .focus(function () {
-            $(".ohje").hide();
-            $("#ohje-talokoko").fadeIn();
+        .focusin(function () {
+            $("#ohje-perus").hide();
+            $("#ohje-talokoko").show();
+        })
+        .focusout(function () {
+            $("#ohje-perus").show();
+            $("#ohje-talokoko").hide();
+        })
+        .mouseout(function () {
+            $("#ohje-perus").show();
+            $("#ohje-talokoko").hide()
         });
 
     $("#eclass")
-        .hover(function () {
-            $(".ohje").hide();
-            $("#ohje-energialuokka").fadeIn();
+        .mouseover(function () {
+            $("#ohje-perus").hide();
+            $("#ohje-energialuokka").show();
         })
-        .focus(function () {
-            $(".ohje").hide();
-            $("#ohje-energialuokka").fadeIn();
+        .focusin(function () {
+            $("#ohje-perus").hide();
+            $("#ohje-energialuokka").show();
+        })
+        .focusout(function () {
+            $("#ohje-perus").show();
+            $("#ohje-energialuokka").hide();
+        })
+        .mouseout(function () {
+            $("#ohje-perus").show();
+            $("#ohje-energialuokka").hide()
         });
 
     $("#temperature")
-        .hover(function () {
-            $(".ohje").hide();
-            $("#ohje-lampotila").fadeIn();
+        .mouseover(function () {
+            $("#ohje-perus").hide();
+            $("#ohje-lampotila").show();
         })
-        .focus(function () {
-            $(".ohje").hide();
-            $("#ohje-lampotila").fadeIn();
+        .focusin(function () {
+            $("#ohje-perus").hide();
+            $("#ohje-lampotila").show();
+        })
+        .focusout(function () {
+            $("#ohje-perus").show();
+            $("#ohje-lampotila").hide();
+        })
+        .mouseout(function () {
+            $("#ohje-perus").show();
+            $("#ohje-lampotila").hide()
         });
 
     $("#days")
-        .hover(function () {
-            $(".ohje").hide();
-            $("#ohje-paivat").fadeIn();
+        .mouseover(function () {
+            $("#ohje-perus").hide();
+            $("#ohje-paivat").show();
         })
-        .focus(function () {
-            $(".ohje").hide();
-            $("#ohje-paivat").fadeIn();
+        .focusin(function () {
+            $("#ohje-perus").hide();
+            $("#ohje-paivat").show();
+        })
+        .focusout(function () {
+            $("#ohje-perus").show();
+            $("#ohje-paivat").hide();
+        })
+        .mouseout(function () {
+            $("#ohje-perus").show();
+            $("#ohje-paivat").hide()
         });
 
     $("#town")
-        .hover(function () {
-            $(".ohje").hide();
-            $("#ohje-kunta").fadeIn();
+        .mouseover(function () {
+            $("#ohje-perus").hide();
+            $("#ohje-kunta").show();
         })
-        .focus(function () {
-            $(".ohje").hide();
-            $("#ohje-kunta").fadeIn();
+        .focusin(function () {
+            $("#ohje-perus").hide();
+            $("#ohje-kunta").show();
+        })
+        .focusout(function () {
+            $("#ohje-perus").show();
+            $("#ohje-kunta").hide();
+        })
+        .mouseout(function () {
+            $("#ohje-perus").show();
+            $("#ohje-kunta").hide()
         });
 });
-

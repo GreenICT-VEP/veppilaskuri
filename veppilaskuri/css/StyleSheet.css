@@ -7,25 +7,32 @@ html {
     height: 100%;
 }
 body {
-    background-color: #000;
     font-family: Helvetica, Arial, sans-serif;
     color: #121212;
     min-height: 100%;
 }
-img {
-
+#content-wrapper {
+    background-image: url(/pics/taustallinen3.png);
+    height: 100%;
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 header {
-    height: 150px;
+    text-align: center;
+    padding: 20px 20px 20px 20px;
 }
 p {
-    font-size: 20px;
+    /*text-indent: 2em;*/
+    font-size: 1.25em;
     text-align: justify;
 }
 h1 {
     display: inline;
-    font-size: 50px;
+    font-size: 4em;
     font-weight: bold;
+    text-transform: uppercase;
 }
 footer {
     clear: both;
@@ -37,22 +44,59 @@ footer {
 #title {
     text-align: center;
 }
-.result, #Lomake, #Ohjeita{
-    padding: 10px;
-    border: solid 2px #000;
+#esittelykuva{
+    max-height: 400px;
+}
+.logo {
+    height: 100px;
+    padding: 20px 50px 20px 50px;
+    opacity: 0.5;
+    filter: alpha(opacity=50); /* For IE8 and earlier */
+}
+.result, .result-graph, #Lomake, #Ohjeita, #Esittely {
+    padding: 25px;
     border-radius: 5px;
     box-sizing: border-box;
     text-align: center;
     box-shadow: rgba(0,0,0,0.5) 3px 3px;
     background-color: #FFF;
     margin-bottom: 10px;
-    min-height: 488px;
+}
+.result-graph{
+    min-height: 500px;
+}
+.result{
+    min-height: 150px;
+}
+#day-details{
+    /* graph element - average element - margin - border */
+    min-height: calc(500px - 150px - 10px - 1.6px);
+}
+#Lomake, #Ohjeita{
+    min-height: 375px;
+}
+.form-item{
+    padding-bottom: 10px;
+}
+input, select {
+    font-size: 1.5em !important;
+    height: 2em !important;
+}
+.glyphicon{
+    font-size: 1.5em !important;
+}
+.image_weather{
+    width: 110px;
+    height: 110px;
+}
+.day-details, .average{
+    font-size: 1.25em;
+}
+#final_avg {
+    font-size: 2em;
 }
 .result {
     border: solid 2px #FFF;
-}
-.average {
-    font-weight: bold;
 }
 .row{
     padding: 5px !important;
@@ -64,32 +108,34 @@ footer {
     display: block;
     border: 2px solid #000;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 /* COLORS */
 header {
-    background-color: #4CBB17;
-    color: #FFF;
+    /*background-color: #4CBB17;*/
+    color: #3137FD;
+    text-shadow: 2px 2px 2px #000
 }
 #title {
-    background-color: #71FF54;
-    color: black;
+    /*background-color: #71FF54;*/
+    color: #000;
 }
 #results {
-    background-color: #388E8E;
+    /*background-color: #388E8E;*/
     min-height: 100%;
 }
 #result_graph{
     background-color: #FFF;
 }
 #main {
-    background-color: #4CBB17;
+    /*background-color: #4CBB17;*/
 }
 #Lomake {
-    background-color: antiquewhite;
+    background-color: #FFF;
 }
 #Ohjeita {
-    background-color: antiquewhite;
+    background-color: #FFF;
 }
 footer {
     background-color: #000;

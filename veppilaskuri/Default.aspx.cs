@@ -26,7 +26,7 @@ public partial class _Default : System.Web.UI.Page
             float eclass_upper = 150;
             float temp_in = 20;
             float.TryParse(Request["temperature"].Replace(',','.'), NumberStyles.Any, CultureInfo.InvariantCulture, out temp_in);
-            float size;
+            float size = 100;
             float.TryParse(Request["size"].Replace(',','.'), NumberStyles.Any, CultureInfo.InvariantCulture, out size);
             switch (Request["eclass"])
             {
@@ -62,22 +62,32 @@ public partial class _Default : System.Web.UI.Page
             int days_count = 0;
             foreach (dynamic day in weather_data.list)
             {
-                float day_average = (float)day.temp.day;
-                ConsumptionData data = new ConsumptionData();
-                data.date = DateTime.Now.AddDays(days_count);
-                data.temperature = (float)day.temp.day;
-                if(Math.Abs(data.temperature) > max_temperature)
+                float day_average = Convert.ToSingle(day.temp.day);
+                if (Math.Abs(day_average) > max_temperature)
                 {
-                    max_temperature = Math.Abs(data.temperature);
+                    max_temperature = Math.Abs(day_average);
                 }
-                data.consumption_low = (temp_in - day_average) * eclass_lower_multiplier;
-                data.consumption_up = (temp_in - day_average) * eclass_upper_multiplier;
-                data.consumption_avg = (data.consumption_low + data.consumption_up) / 2;
-                if (data.consumption_avg > max_consumption_avg)
+                float temp_difference = (temp_in - day_average);
+                if (temp_difference > 0)
                 {
-                    max_consumption_avg = data.consumption_avg;
+                    consumption_data[days_count] = new ConsumptionData(DateTime.Now.AddDays(days_count),
+                    Convert.ToSingle(day.temp.day),
+                    temp_difference * eclass_lower_multiplier,
+                    temp_difference * eclass_upper_multiplier,
+                    string.Format("http://openweathermap.org/img/w/{0}.png", day.weather[0].icon));
+                    if(consumption_data[days_count].consumption_avg > max_consumption_avg)
+                    {
+                        max_consumption_avg = consumption_data[days_count].consumption_avg;
+                    }
                 }
-                consumption_data[days_count] = data;
+                else
+                {
+                    consumption_data[days_count] = new ConsumptionData(DateTime.Now.AddDays(days_count),
+                    Convert.ToSingle(day.temp.day),
+                    0,
+                    0,
+                    string.Format("http://openweathermap.org/img/w/{0}.png", day.weather[0].icon));
+                }
                 days_count++;
             }
         }
@@ -88,7 +98,6 @@ public partial class _Default : System.Web.UI.Page
         town = town.ToLower().Replace('ä', 'a').Replace('ö', 'o');
         string url = "http://api.openweathermap.org/data/2.5/forecast/daily?q=" + town + ",fi&units=metric&cnt=" + days + "&appid=01adb891d220d1e34fa40c7ebcc1b120";
         string json;
-        dynamic result;
         HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
         using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
         using (Stream stream = response.GetResponseStream())
@@ -96,7 +105,7 @@ public partial class _Default : System.Web.UI.Page
         {
             json = reader.ReadToEnd();
         }
-        return result = Json.Decode(json);
+        return Json.Decode(json);
     }
 
     public string ConvertToJSON(ConsumptionData[] obj)
@@ -107,9 +116,43 @@ public partial class _Default : System.Web.UI.Page
 
 public class ConsumptionData
 {
-    public DateTime date;
-    public float temperature;
-    public float consumption_low;
-    public float consumption_up;
-    public float consumption_avg;
+    private DateTime _date;
+    private float _temperature;
+    private float _consumption_low;
+    private float _consumption_up;
+    private float _consumption_avg;
+    private string _img_url;
+    public ConsumptionData(DateTime date, float temperature, float consumption_low, float consumption_up, string img_url)
+    {
+        _date = date;
+        _temperature = temperature;
+        _consumption_low = consumption_low;
+        _consumption_up = consumption_up;
+        _consumption_avg = (consumption_low + consumption_up) / 2;
+        _img_url = img_url;
+    }
+    public DateTime date
+    {
+        get { return _date; }
+    }
+    public float temperature
+    {
+        get { return _temperature; }
+    }
+    public float consumption_low
+    {
+        get { return _consumption_low; }
+    }
+    public float consumption_up
+    {
+        get { return _consumption_up; }
+    }
+    public float consumption_avg
+    {
+        get { return _consumption_avg; }
+    }
+    public string img_url
+    {
+        get { return _img_url; }
+    }
 }
