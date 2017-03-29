@@ -59,8 +59,9 @@ footer {
     box-sizing: border-box;
     text-align: center;
     box-shadow: rgba(0,0,0,0.5) 3px 3px;
-    background-color: #FFF;
+    background-color: #d5ffcc;
     margin-bottom: 10px;
+    opacity: 0.95;
 }
 .result-graph{
     min-height: 500px;
@@ -132,10 +133,10 @@ header {
     /*background-color: #4CBB17;*/
 }
 #Lomake {
-    background-color: #FFF;
+    background-color: #d5ffcc;
 }
 #Ohjeita {
-    background-color: #FFF;
+    background-color: #d5ffcc;
 }
 footer {
     background-color: #000;
