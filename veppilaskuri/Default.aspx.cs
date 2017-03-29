@@ -16,11 +16,16 @@ public partial class _Default : System.Web.UI.Page
     public float max_consumption_avg = 0;
     protected void Page_Load(object sender, EventArgs e)
     {
+        //Lomako on lähetetty
         if (HttpContext.Current.Request.HttpMethod == "POST")
         {
             int days = 7;
             int.TryParse(Request["days"], out days);
+
+            //Kutsutaan funktioita joka hakee Json säätiedot
             dynamic weather_data = get_weather_data(Request["town"], days);
+
+            //Luodaan uusi objekti kaikelle kulutustiedolle
             consumption_data = new ConsumptionData[days];
             float eclass_lower = 0;
             float eclass_upper = 150;
@@ -60,6 +65,8 @@ public partial class _Default : System.Web.UI.Page
             float eclass_lower_multiplier = (eclass_lower / 365) * size / 16.7f;
             float eclass_upper_multiplier = (eclass_upper / 365) * size / 16.7f;
             int days_count = 0;
+
+            //Käydään säätiedot läpi päivittäin
             foreach (dynamic day in weather_data.list)
             {
                 float day_average = Convert.ToSingle(day.temp.day);
