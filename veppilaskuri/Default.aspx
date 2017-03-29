@@ -35,7 +35,7 @@
     <div id="content-wrapper">
         <header>
             <div id="header" class="col-sm-10 col-sm-offset-1">
-                <img src="pics/energia_logo.png" alt="Energia Logo"/>
+                <img src="pics/energialogo3.png" alt="Energia Logo"/>
                 <h1>Energialaskuri</h1>
             </div>
         </header>
