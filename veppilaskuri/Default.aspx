@@ -34,7 +34,7 @@
 <body>
     <div id="content-wrapper">
         <header>
-            <img src="pics/energia_logo.png" alt="Energia Logo"/>
+            <img src="pics/energialogo2.png" alt="Energia Logo"/>
             <h1>Energialaskuri</h1>
         </header>
         <div class="container-fluid">
