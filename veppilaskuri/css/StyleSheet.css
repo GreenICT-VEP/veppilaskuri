@@ -59,6 +59,7 @@ footer {
     box-sizing: border-box;
     text-align: center;
     box-shadow: rgba(0,0,0,0.5) 3px 3px;
+    background-color: #d5ffcc;
     margin-bottom: 10px;
     opacity: 0.9;
     filter: alpha(opacity=90); /* For IE8 and earlier */
@@ -85,6 +86,9 @@ input, select {
 }
 .glyphicon, .icon{
     font-size: 2em !important;
+}
+.input-group-addon {
+    min-width: 45px !important;
 }
 .image_weather{
     width: 110px;
@@ -133,10 +137,10 @@ header {
     /*background-color: #4CBB17;*/
 }
 #Lomake {
-    background-color: #FFF;
+    background-color: #d5ffcc;
 }
 #Ohjeita {
-    background-color: #FFF;
+    background-color: #d5ffcc;
 }
 footer {
     background-color: #000;
