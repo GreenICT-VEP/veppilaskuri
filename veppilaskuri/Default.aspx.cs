@@ -16,7 +16,7 @@ public partial class _Default : System.Web.UI.Page
     public float max_consumption_avg = 0;
     protected void Page_Load(object sender, EventArgs e)
     {
-        //Lomako on lähetetty
+        //Lomake on lähetetty
         if (HttpContext.Current.Request.HttpMethod == "POST")
         {
             int days = 7;
@@ -75,6 +75,8 @@ public partial class _Default : System.Web.UI.Page
                     max_temperature = Math.Abs(day_average);
                 }
                 float temp_difference = (temp_in - day_average);
+
+                //Estetään negatiiviset sisälämpötilat ja virran kulku väärän suuntaan.
                 if (temp_difference > 0)
                 {
                     consumption_data[days_count] = new ConsumptionData(DateTime.Now.AddDays(days_count),
