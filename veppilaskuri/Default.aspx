@@ -34,10 +34,8 @@
 <body>
     <div id="content-wrapper">
         <header>
-            <div id="header" class="col-sm-10 col-sm-offset-1">
-                <img src="pics/energia_logo.png" alt="Energia Logo"/>
-                <h1>Energialaskuri</h1>
-            </div>
+            <img src="pics/energia_logo.png" alt="Energia Logo"/>
+            <h1>Energialaskuri</h1>
         </header>
         <div class="container-fluid">
             <div class="row" id="title">
