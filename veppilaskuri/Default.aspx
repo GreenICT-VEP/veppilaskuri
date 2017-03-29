@@ -24,6 +24,9 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     
+    <!-- IonIcons -->
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
+
     <!-- Omat stylesheetit ja javascriptit -->
     <link rel="stylesheet" type="text/css" href="css/StyleSheet.css" />
     <script src="js/javascriptit.js"></script>
@@ -80,14 +83,14 @@
                                 <div class="col-sm-12 form-item">
                                     <!--<label for="size" class="col-sm-3 control-label">Talon koko</label>-->
                                     <div class="input-group col-sm-10 col-sm-offset-1">
-                                        <span class="input-group-addon"><i class="glyphicon glyphicon-bed"></i></span>
+                                        <span class="input-group-addon"><i class="icon ion-home"></i></span>
                                         <input name="size" id="size" type="number" step="0.1" class="form-control" required <% if (Request["size"] != null) { Response.Write(string.Format("value={0}", Request["size"])); } %> />
                                     </div>
                                 </div>
                                 <div class="col-sm-12 form-item">                            
                                     <!--<label for="eclass" class="col-sm-3 control-label">Energialuokka</label>-->
                                      <div class="input-group col-sm-10 col-sm-offset-1">
-                                        <span class="input-group-addon"><i class="glyphicon glyphicon-flash"></i></span>
+                                        <span class="input-group-addon"><i class="icon ion-flash"></i></span>
                                        <select name="eclass" id="eclass" class="form-control" autocomplete="off" > <!-- Firefox needs the autocomplete to show the selection -->
                                             <option <% if (Request["eclass"] != null) { if (Request["eclass"] == "A") { Response.Write("selected='selected'"); }} %>>A</option>
                                             <option <% if (Request["eclass"] != null) { if (Request["eclass"] == "B") { Response.Write("selected='selected'"); }} %>>B</option>
@@ -102,21 +105,21 @@
                                 <div class="col-sm-12 form-item">
                                     <!--<label for="temperature" class="col-sm-3 control-label">Sisälämpötila</label>-->
                                     <div class="input-group col-sm-10 col-sm-offset-1">
-                                        <span class="input-group-addon"><i class="glyphicon glyphicon-dashboard"></i></span>
+                                        <span class="input-group-addon"><i class="icon ion-thermometer"></i></span>
                                         <input name="temperature" id="temperature" type="number" <% if (Request["temperature"] != null) { Response.Write(string.Format("value={0}", Request["temperature"])); } else { Response.Write("value='20'"); } %> step="0.1" class="form-control" required/>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 form-item">
                                     <!--<label for="days" class="col-sm-3 control-label">Päivät</label>-->
                                     <div class="input-group col-sm-10 col-sm-offset-1">
-                                        <span class="input-group-addon"><i class="glyphicon glyphicon-stats"></i></span>
+                                        <span class="input-group-addon"><i class="icon ion-android-calendar"></i></span>
                                         <input name="days" id="days" type="number" <% if (Request["days"] != null) { Response.Write(string.Format("value={0}", Request["days"])); } else { Response.Write("value='7'"); } %> min="1" max="16" class="form-control" required />
                                     </div>
                                 </div>
                                 <div class="col-sm-12 form-item">
                                     <!--<label for="town" class="col-sm-3 control-label">Kunta</label>-->
                                     <div class="input-group col-sm-10 col-sm-offset-1">
-                                        <span class="input-group-addon"><i class="glyphicon glyphicon-map-marker"></i></span>
+                                        <span class="input-group-addon"><i class="icon ion-ios-location"></i></span>
                                         <input name="town" id="town" placeholder="Kunta" class="form-control" required <% if (Request["town"] != null) { Response.Write(string.Format("value={0}", Request["town"])); } %> />
                                     </div>
                                 </div>
@@ -134,11 +137,11 @@
                         </div>
                         <div id="ohje-talokoko" class="ohje col-md-12">
                             <h3>Talon koko</h3>
-                            <p>Talon koko annetaan neliömetreinä.</p>
+                            <p>Talon koko annetaan neliömetreinä. Omakotitalojen keskikoko on 110m<sup>2</sup>. Kerrostaloasunnon keskikoko on 55m<sup>2</sup>. Rivitaloasunnon keskikoko on 70m<sup>2</sup></p>
                         </div>
                         <div id="ohje-energialuokka" class="ohje col-md-12">
                             <h3>Energialuokka</h3>
-                            <p>Talojen energialuokat on listattu wikipediassa.</p>
+                            <p>Talon energialuokka saadaa laskennallisesti energiatodistuksen yhteydessä. Talon energialuokkaan vaikuttaa talon lämmitysmuoto, eristysten paksuus, ilmastointi ja ikkunoiden koko.</p>
                         </div>                    
                         <div id="ohje-lampotila" class="ohje col-md-12">
                             <h3>Sisälämpötila</h3>
