@@ -53,7 +53,7 @@ footer {
     opacity: 0.5;
     filter: alpha(opacity=50); /* For IE8 and earlier */
 }
-.result, .result-graph, #Lomake, #Ohjeita, #Esittely {
+.result, .result-graph, #Lomake, #Ohjeita, #Esittely, #header {
     padding: 25px;
     border-radius: 5px;
     box-sizing: border-box;
