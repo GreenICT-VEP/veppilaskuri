@@ -87,6 +87,9 @@ input, select {
 .glyphicon, .icon{
     font-size: 2em !important;
 }
+.input-group-addon {
+    min-width: 45px !important;
+}
 .image_weather{
     width: 110px;
     height: 110px;
