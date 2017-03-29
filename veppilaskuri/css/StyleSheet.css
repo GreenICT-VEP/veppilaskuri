@@ -61,7 +61,8 @@ footer {
     box-shadow: rgba(0,0,0,0.5) 3px 3px;
     background-color: #d5ffcc;
     margin-bottom: 10px;
-    opacity: 0.95;
+    opacity: 0.9;
+    filter: alpha(opacity=90); /* For IE8 and earlier */
 }
 .result-graph{
     min-height: 500px;
