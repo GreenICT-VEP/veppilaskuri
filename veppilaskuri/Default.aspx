@@ -50,7 +50,7 @@
                         </p>
                         <p>
                             VEP-ryhmä on suunnitellut sivuston käyttöliittymän ja toiminnallisuuden Pencil-ohjelmalla ja toteuttanut sivuston toiminnallisuuden C#-kielellä .NET-ympäristössä.
-                            Sivuston layout on asetettu Bootstrap-kirjaston avulla. Ohjetekstit tuodaan esille jQuery-kirjaston eventeillä. Lomake on HTML5 koodia lisättynä Glyphiconeilla.
+                            Sivuston layout on asetettu Bootstrap-kirjaston avulla. Ohjetekstit tuodaan esille jQuery-kirjaston eventeillä. Lomake on HTML5 koodia lisättynä IonIconeilla.
                             Lopputuloksen esittely Canvas-elementillä on kirjoitettu alusta loppuun projektin sisällä.
                         </p>
                         <p>
