@@ -54,7 +54,7 @@
                             Lopputuloksen esittely Canvas-elementillä on kirjoitettu alusta loppuun projektin sisällä.
                         </p>
                         <p>
-                            Sivuston ohjelmakoodi on nähtävissä Githubissa. Projektin lopputulos ajetaan LAMK:n sisäverkossa IISi-palvelimella osoitteessa <a href="http://iis01.lamk.fi">iisi01.lamk.fi</a>
+                            Sivuston ohjelmakoodi on nähtävissä Githubissa. Projektin lopputulos ajetaan LAMK:n sisäverkossa IISi-palvelimella osoitteessa <a href="http://iisi01.lamk.fi">iisi01.lamk.fi</a>
                         </p>
                     </div>
                 </div>
